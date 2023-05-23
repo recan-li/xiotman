@@ -55,7 +55,6 @@
 #define RT_CONSOLE_DEVICE_NAME "uart0"
 #define RT_VER_NUM 0x50000
 #define RT_USING_CACHE
-#define RT_USING_HW_ATOMIC
 #define RT_USING_CPU_FFS
 #define ARCH_MM_MMU
 #define ARCH_ARM
@@ -220,6 +219,9 @@
 /* u8g2: a monochrome graphic library */
 
 
+/* PainterEngine: A cross-platform graphics application framework written in C language */
+
+
 /* tools packages */
 
 
@@ -239,19 +241,11 @@
 
 /* peripheral libraries and drivers */
 
-/* sensors drivers */
-
-
-/* touch drivers */
-
 
 /* Kendryte SDK */
 
 
 /* AI packages */
-
-
-/* Signal Processing and Control Algorithm Packages */
 
 
 /* miscellaneous packages */
@@ -264,40 +258,6 @@
 /* entertainment: terminal games and other interesting software packages */
 
 
-/* Arduino libraries */
-
-
-/* Projects */
-
-
-/* Sensors */
-
-
-/* Display */
-
-
-/* Timing */
-
-
-/* Data Processing */
-
-
-/* Data Storage */
-
-/* Communication */
-
-
-/* Device Control */
-
-
-/* Other */
-
-
-/* Signal IO */
-
-
-/* Uncategorized */
-
 /* Hardware Drivers Config */
 
 #define SOC_VEXPRESS_A9
@@ -306,5 +266,13 @@
 
 #define RT_USING_UART0
 #define RT_USING_UART1
+
+/* App Project Configuration */
+
+#define APP_NAME "test"
+#define MCU_NAME "ra2e1"
+#define RTOS_NAME "rt-thread"
+#define RTOS_VERSION "5.0.x"
+#define OPTION_2
 
 #endif

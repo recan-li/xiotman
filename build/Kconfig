@@ -1,0 +1,20 @@
+
+menu "App Project Configuration"
+
+config APP_NAME
+    string "App Name"
+    default ""
+
+config MCU_NAME
+    string "MCU Name"
+    default ""
+
+config RTOS_NAME
+    string "RTOS Name"
+    default ""
+
+config RTOS_VERSION
+    string "RTOS Version"
+    default ""
+
+endmenu

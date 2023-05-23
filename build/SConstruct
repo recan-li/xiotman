@@ -1,0 +1,125 @@
+
+import os
+
+# 导入SCons的相关模块
+from SCons.Script import *
+
+# 获取当前工作目录
+cur_path = os.getcwd()
+cur_app = ''
+cur_mcu = ''
+cur_rtos = ''
+cur_rtos_ver = ''
+all_apps = []
+config_file = '.config'
+apps_path = '../apps'
+mcus_path = '../mcu'
+rtos_path = '../rtos'
+
+# 定义选项
+AddOption("--test", action="store_true", dest="test",
+          default=False, help="Run tests")
+AddOption("--list_app", action="store_true", dest="list_app",
+              default=False, help="Run list_app")
+AddOption("--menuconfig", action="store_true", dest="menuconfig",
+              default=False, help="Run menuconfig")
+
+# 定义编译环境
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'])
+
+def load_config(config_file):
+    with open(config_file, 'r') as f:
+        content = f.read()
+        string_array = content.split(',')
+        #print(string_array)
+    return string_array
+
+def save_config(config_file, cur_app, cur_mcu):
+    with open(config_file, 'w') as f:
+        content = f.write(cur_app + ',' + cur_mcu + '\n')
+
+def list_apps(path):
+    # 列出目录下的所有文件和子目录
+    files = os.listdir(path)
+
+    # 遍历所有文件和子目录，筛选出子目录
+    subdirs = []
+    for file in files:
+        if os.path.isdir(os.path.join(path, file)):
+            subdirs.append(file)
+
+    return subdirs
+
+def list_app_func(path):    
+    # 输出所有子目录
+    print('apps table  : ' + " ".join(all_apps))
+    print('cur app     : ' + cur_app)
+    print('cur mcu     : ' + cur_mcu)
+    print('cur rtos    : ' + cur_rtos)
+    print('cur rtos ver: ' + cur_rtos_ver)
+
+def menuconfig_func(target_path):  
+    os.chdir(target_path)
+    print(os.getcwd())
+    os.system('menuconfig')
+
+##################################################
+
+a = load_config(config_file)
+cur_app = a[0].strip()
+cur_mcu = a[1].strip()
+cur_rtos = a[2].strip()
+cur_rtos_ver = a[3].strip()
+
+all_apps = list_apps(apps_path)
+
+cur_app_path = apps_path + '/' + cur_app
+cur_mcu_path = mcus_path + '/' + cur_mcu
+cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
+
+print(cur_path)
+os.environ['BUILD_ROOT'] = cur_path
+os.environ['RTT_ROOT'] = '../../rtos/' + cur_rtos + '/' + cur_rtos_ver
+
+
+def create_build_kconfig(apps_options):
+    with open("Kconfig2", "w") as f:
+        f.write("menu \"App Project Configuration\"\n")
+
+        # app name
+        f.write("choice\n")
+        f.write("\tprompt \"My choice\"\n")
+        #f.write("\tdefault OPTION_%s\n" % apps_options[0])
+        f.write("\n")
+
+        for i, option in enumerate(apps_options):
+            f.write("\tconfig OPTION_%s\n" % option.upper())
+            f.write("\t\tbool \"%s\"\n" % option)
+            f.write("\t\thelp\n")
+            f.write("\t\t  This is %s.\n" % option)
+            f.write("\n")
+
+        f.write("endchoice\n")
+        f.write("\n")
+
+create_build_kconfig(all_apps)
+
+print('\n\n--------------------------')
+
+# 在构建过程中使用选项
+if GetOption('test'):
+    # 执行测试
+    print("Running tests...")
+
+if GetOption('list_app'):
+    # 执行测试
+    print("Running list_app...")
+    list_app_func(apps_path)
+
+if GetOption('menuconfig'):
+    # 执行测试
+    print("Running menuconfig...")
+    menuconfig_func(cur_mcu_path)
+
+print('--------------------------\n\n')

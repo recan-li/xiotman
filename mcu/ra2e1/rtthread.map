@@ -1687,7 +1687,7 @@ LOAD c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_fo
 LOAD c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v8-m.base/nofp\libnosys.a
 END GROUP
 
-.text           0x00000000    0x154fc
+.text           0x00000000    0x15500
                 0x00000000                __tz_FLASH_S = ABSOLUTE (FLASH_START)
                 0x00000000                __ROM_Start = .
  *(.fixed_vectors*)
@@ -3290,91 +3290,91 @@ END GROUP
  .rodata.g_interrupt_event_link_select
                 0x00014fe4       0x20 build\ra_gen\vector_data.o
                 0x00014fe4                g_interrupt_event_link_select
- .rodata        0x00015004       0x9b build\src\hal_entry.o
- *fill*         0x0001509f        0x1 ff
- .rodata.name   0x000150a0       0x17 build\src\hal_entry.o
-                0x000150a0                __fsym_icu_sample_name
-                0x000150ac                __fsym_icu_sample_desc
- *fill*         0x000150b7        0x1 ff
- .rodata.name   0x000150b8       0x16 libraries\HAL_Drivers\drv_common.o
-                0x000150b8                __fsym_reboot_name
-                0x000150c0                __fsym_reboot_desc
- *fill*         0x000150ce        0x2 ff
- .rodata        0x000150d0        0x6 libraries\HAL_Drivers\drv_common.o
- *fill*         0x000150d6        0x2 ff
+ .rodata        0x00015004       0x9f build\src\hal_entry.o
+ *fill*         0x000150a3        0x1 ff
+ .rodata.name   0x000150a4       0x17 build\src\hal_entry.o
+                0x000150a4                __fsym_icu_sample_name
+                0x000150b0                __fsym_icu_sample_desc
+ *fill*         0x000150bb        0x1 ff
+ .rodata.name   0x000150bc       0x16 libraries\HAL_Drivers\drv_common.o
+                0x000150bc                __fsym_reboot_name
+                0x000150c4                __fsym_reboot_desc
+ *fill*         0x000150d2        0x2 ff
+ .rodata        0x000150d4        0x6 libraries\HAL_Drivers\drv_common.o
+ *fill*         0x000150da        0x2 ff
  .rodata.ra_pin_get_irqx
-                0x000150d8       0xa0 libraries\HAL_Drivers\drv_gpio.o
- .rodata        0x00015178      0x168 libraries\HAL_Drivers\drv_gpio.o
+                0x000150dc       0xa0 libraries\HAL_Drivers\drv_gpio.o
+ .rodata        0x0001517c      0x168 libraries\HAL_Drivers\drv_gpio.o
  .rodata._ra_pin_ops
-                0x000152e0       0x1c libraries\HAL_Drivers\drv_gpio.o
- .rodata        0x000152fc       0x7d libraries\HAL_Drivers\drv_usart_v2.o
- *fill*         0x00015379        0x3 ff
+                0x000152e4       0x1c libraries\HAL_Drivers\drv_gpio.o
+ .rodata        0x00015300       0x7d libraries\HAL_Drivers\drv_usart_v2.o
+ *fill*         0x0001537d        0x3 ff
  .rodata.ra_uart_ops
-                0x0001537c       0x14 libraries\HAL_Drivers\drv_usart_v2.o
+                0x00015380       0x14 libraries\HAL_Drivers\drv_usart_v2.o
  .rodata.__FUNCTION__.5
-                0x00015390       0x12 libraries\HAL_Drivers\drv_usart_v2.o
- *fill*         0x000153a2        0x2 ff
+                0x00015394       0x12 libraries\HAL_Drivers\drv_usart_v2.o
+ *fill*         0x000153a6        0x2 ff
  .rodata.__FUNCTION__.4
-                0x000153a4        0xd libraries\HAL_Drivers\drv_usart_v2.o
- *fill*         0x000153b1        0x3 ff
+                0x000153a8        0xd libraries\HAL_Drivers\drv_usart_v2.o
+ *fill*         0x000153b5        0x3 ff
  .rodata.__FUNCTION__.2
-                0x000153b4       0x11 libraries\HAL_Drivers\drv_usart_v2.o
- *fill*         0x000153c5        0x3 ff
+                0x000153b8       0x11 libraries\HAL_Drivers\drv_usart_v2.o
+ *fill*         0x000153c9        0x3 ff
  .rodata.__FUNCTION__.1
-                0x000153c8       0x14 libraries\HAL_Drivers\drv_usart_v2.o
+                0x000153cc       0x14 libraries\HAL_Drivers\drv_usart_v2.o
  .rodata.__FUNCTION__.0
-                0x000153dc       0x11 libraries\HAL_Drivers\drv_usart_v2.o
- *fill*         0x000153ed        0x3 ff
+                0x000153e0       0x11 libraries\HAL_Drivers\drv_usart_v2.o
+ *fill*         0x000153f1        0x3 ff
  .rodata._ctype_
-                0x000153f0      0x101 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v8-m.base/nofp\libc.a(lib_a-ctype_.o)
-                0x000153f0                _ctype_
- *fill*         0x000154f1        0x3 ff
+                0x000153f4      0x101 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v8-m.base/nofp\libc.a(lib_a-ctype_.o)
+                0x000153f4                _ctype_
+ *fill*         0x000154f5        0x3 ff
  .rodata._global_impure_ptr
-                0x000154f4        0x4 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v8-m.base/nofp\libc.a(lib_a-impure.o)
-                0x000154f4                _global_impure_ptr
-                0x000154f8                __usb_dev_descriptor_start_fs = .
+                0x000154f8        0x4 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v8-m.base/nofp\libc.a(lib_a-impure.o)
+                0x000154f8                _global_impure_ptr
+                0x000154fc                __usb_dev_descriptor_start_fs = .
  *(.usb_device_desc_fs*)
-                0x000154f8                __usb_cfg_descriptor_start_fs = .
+                0x000154fc                __usb_cfg_descriptor_start_fs = .
  *(.usb_config_desc_fs*)
-                0x000154f8                __usb_interface_descriptor_start_fs = .
+                0x000154fc                __usb_interface_descriptor_start_fs = .
  *(.usb_interface_desc_fs*)
-                0x000154f8                __usb_descriptor_end_fs = .
-                0x000154f8                __usb_dev_descriptor_start_hs = .
+                0x000154fc                __usb_descriptor_end_fs = .
+                0x000154fc                __usb_dev_descriptor_start_hs = .
  *(.usb_device_desc_hs*)
-                0x000154f8                __usb_cfg_descriptor_start_hs = .
+                0x000154fc                __usb_cfg_descriptor_start_hs = .
  *(.usb_config_desc_hs*)
-                0x000154f8                __usb_interface_descriptor_start_hs = .
+                0x000154fc                __usb_interface_descriptor_start_hs = .
  *(.usb_interface_desc_hs*)
-                0x000154f8                __usb_descriptor_end_hs = .
+                0x000154fc                __usb_descriptor_end_hs = .
  *(.eh_frame*)
- .eh_frame      0x000154f8        0x0 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtbegin.o
- .eh_frame      0x000154f8        0x4 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtend.o
-                0x000154fc                __ROM_End = .
+ .eh_frame      0x000154fc        0x0 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtbegin.o
+ .eh_frame      0x000154fc        0x4 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtend.o
+                0x00015500                __ROM_End = .
                 0x000000c0                __Vectors_Size = (__Vectors_End - __Vectors)
 
-.glue_7         0x000154fc        0x0
- .glue_7        0x000154fc        0x0 linker stubs
+.glue_7         0x00015500        0x0
+ .glue_7        0x00015500        0x0 linker stubs
 
-.glue_7t        0x000154fc        0x0
- .glue_7t       0x000154fc        0x0 linker stubs
+.glue_7t        0x00015500        0x0
+ .glue_7t       0x00015500        0x0 linker stubs
 
-.vfp11_veneer   0x000154fc        0x0
- .vfp11_veneer  0x000154fc        0x0 linker stubs
+.vfp11_veneer   0x00015500        0x0
+ .vfp11_veneer  0x00015500        0x0 linker stubs
 
-.v4_bx          0x000154fc        0x0
- .v4_bx         0x000154fc        0x0 linker stubs
+.v4_bx          0x00015500        0x0
+ .v4_bx         0x00015500        0x0 linker stubs
 
-.iplt           0x000154fc        0x0
- .iplt          0x000154fc        0x0 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtbegin.o
+.iplt           0x00015500        0x0
+ .iplt          0x00015500        0x0 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x000154fc                __exidx_start = .
+                0x00015500                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x000154fc                __exidx_end = .
-                0x000154fc                __etext = .
+                0x00015500                __exidx_end = .
+                0x00015500                __etext = .
                 0x20004000                __tz_RAM_S = ORIGIN (RAM)
 
 .fsp_dtc_vector_table
@@ -3382,7 +3382,7 @@ END GROUP
                 0x20004000                . = ORIGIN (RAM)
  *(.fsp_dtc_vector_table)
 
-.data           0x20004000      0x638 load address 0x000154fc
+.data           0x20004000      0x638 load address 0x00015500
                 0x20004000                __data_start__ = .
                 0x20004000                . = ALIGN (0x4)
                 0x20004000                __Code_In_RAM_Start = .
@@ -3438,7 +3438,7 @@ END GROUP
                 0x20004638                . = ALIGN (0x4)
                 0x20004638                __data_end__ = .
 
-.igot.plt       0x20004638        0x0 load address 0x00015b34
+.igot.plt       0x20004638        0x0 load address 0x00015b38
  .igot.plt      0x20004638        0x0 c:/rt-threadstudio/repo/extract/toolchain_support_packages/arm/gnu_tools_for_arm_embedded_processors/10.2.1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v8-m.base/nofp/crtbegin.o
 
 .gnu.sgstubs    0x00015c00        0x0
@@ -3458,10 +3458,10 @@ END GROUP
  *(.code_in_qspi*)
                 0x60000000                __qspi_flash_end__ = .
                 0x00000000                __qspi_flash_code_size__ = (__qspi_flash_end__ - __qspi_flash_start__)
-                0x00015b34                __qspi_flash_code_addr__ = (__etext + (__data_end__ - __data_start__))
+                0x00015b38                __qspi_flash_code_addr__ = (__etext + (__data_end__ - __data_start__))
 
 .qspi_non_retentive
-                0x60000000        0x0 load address 0x00015b34
+                0x60000000        0x0 load address 0x00015b38
                 0x60000000                __qspi_non_retentive_start__ = .
  *(.qspi_non_retentive*)
                 0x60000000                __qspi_non_retentive_end__ = .
@@ -3494,10 +3494,10 @@ END GROUP
  *(.code_in_ospi_device_0*)
                 0x68000000                __ospi_device_0_end__ = .
                 0x00000000                __ospi_device_0_code_size__ = (__ospi_device_0_end__ - __ospi_device_0_start__)
-                0x00015b34                __ospi_device_0_code_addr__ = (__etext + (__data_end__ - __data_start__))
+                0x00015b38                __ospi_device_0_code_addr__ = (__etext + (__data_end__ - __data_start__))
 
 .ospi_device_0_non_retentive
-                0x68000000        0x0 load address 0x00015b34
+                0x68000000        0x0 load address 0x00015b38
                 0x68000000                __ospi_device_0_non_retentive_start__ = .
  *(.ospi_device_0_non_retentive*)
                 0x68000000                __ospi_device_0_non_retentive_end__ = .
@@ -3514,10 +3514,10 @@ END GROUP
  *(.code_in_ospi_device_1*)
                 0x70000000                __ospi_device_1_end__ = .
                 0x00000000                __ospi_device_1_code_size__ = (__ospi_device_1_end__ - __ospi_device_1_start__)
-                0x00015b34                __ospi_device_1_code_addr__ = (__etext + (__data_end__ - __data_start__))
+                0x00015b38                __ospi_device_1_code_addr__ = (__etext + (__data_end__ - __data_start__))
 
 .ospi_device_1_non_retentive
-                0x70000000        0x0 load address 0x00015b34
+                0x70000000        0x0 load address 0x00015b38
                 0x70000000                __ospi_device_1_non_retentive_start__ = .
  *(.ospi_device_1_non_retentive*)
                 0x70000000                __ospi_device_1_non_retentive_end__ = .
