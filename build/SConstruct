@@ -3,6 +3,7 @@ import os
 
 # 导入SCons的相关模块
 from SCons.Script import *
+from SCons.Script import Command, ARGUMENTS
 
 # 获取当前工作目录
 cur_path = os.getcwd()
@@ -12,9 +13,12 @@ cur_rtos = ''
 cur_rtos_ver = ''
 all_apps = []
 config_file = '.config'
-apps_path = '../apps'
-mcus_path = '../mcu'
-rtos_path = '../rtos'
+apps_path = '../apps/'
+mcus_path = '../mcu/'
+rtos_path = '../rtos/'
+last_build_path = '../../build/'
+kconfig_file = 'Kconfig'
+config_h_file = 'rtconfig.h'
 
 # 定义选项
 AddOption("--test", action="store_true", dest="test",
@@ -25,7 +29,7 @@ AddOption("--menuconfig", action="store_true", dest="menuconfig",
               default=False, help="Run menuconfig")
 
 # 定义编译环境
-DefaultEnvironment(tools=[])
+DefaultEnvironment(tools = [])
 env = Environment(tools = ['mingw'])
 
 def load_config(config_file):
@@ -39,15 +43,23 @@ def save_config(config_file, cur_app, cur_mcu):
     with open(config_file, 'w') as f:
         content = f.write(cur_app + ',' + cur_mcu + '\n')
 
-def list_apps(path):
+def list_path_items(path, is_find_2nd_subdir):
     # 列出目录下的所有文件和子目录
     files = os.listdir(path)
 
     # 遍历所有文件和子目录，筛选出子目录
     subdirs = []
+    subdirs
     for file in files:
         if os.path.isdir(os.path.join(path, file)):
-            subdirs.append(file)
+            if is_find_2nd_subdir:
+                sub_path = os.path.join(path, file)
+                files2 = os.listdir(sub_path)
+                for file2 in files2:
+                    if os.path.isdir(os.path.join(sub_path, file2)):
+                        subdirs.append(file + '_' + file2)    
+            else:
+                subdirs.append(file)
 
     return subdirs
 
@@ -64,6 +76,16 @@ def menuconfig_func(target_path):
     print(os.getcwd())
     os.system('menuconfig')
 
+def clean_func(target_path):  
+    os.chdir(target_path)
+    print(os.getcwd())
+    os.system('scons -c')
+
+def scons_func(target_path):  
+    os.chdir(target_path)
+    print(os.getcwd())
+    os.system('scons')
+
 ##################################################
 
 a = load_config(config_file)
@@ -72,38 +94,115 @@ cur_mcu = a[1].strip()
 cur_rtos = a[2].strip()
 cur_rtos_ver = a[3].strip()
 
-all_apps = list_apps(apps_path)
+all_apps = list_path_items(apps_path, False)
+all_mcus = list_path_items(mcus_path, False)
+all_rtos = list_path_items(rtos_path, False)
+all_rtos_vers = list_path_items(rtos_path, True)
+#print(all_rtos_vers)
 
 cur_app_path = apps_path + '/' + cur_app
 cur_mcu_path = mcus_path + '/' + cur_mcu
 cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
+cur_config_h_file = cur_mcu_path + '/' + config_h_file
 
-print(cur_path)
+#print(cur_path)
+os.environ['BSP_ROOT'] = cur_path + '/' + cur_mcu_path
 os.environ['BUILD_ROOT'] = cur_path
 os.environ['RTT_ROOT'] = '../../rtos/' + cur_rtos + '/' + cur_rtos_ver
 
+def get_config_value_form_config_file(config_h, key):
+    with open(config_h, 'r') as f:
+        lines = f.readlines()
+        result = []
+        for line in lines:
+            if key in line:
+                content = line.partition(key)[2].strip().lower().replace('_', '-')
+                if 'VERSION' in key:
+                    content = content.replace('-', '.')
+                print(content)
+                result.append(content)
 
-def create_build_kconfig(apps_options):
-    with open("Kconfig2", "w") as f:
-        f.write("menu \"App Project Configuration\"\n")
+    return result
 
-        # app name
+def get_config_value_form_config_file_entry():
+    app_name = get_config_value_form_config_file(config_h_file, 'APP_NAME_')[0]
+    mcu_name = get_config_value_form_config_file(config_h_file, 'MCU_NAME_')[0]
+    rtos_name = get_config_value_form_config_file(config_h_file, 'RTOS_NAME_')[0]
+    rtos_version = get_config_value_form_config_file(config_h_file, 'RTOS_VERSION_')[0]
+    with open(last_build_path + config_file, 'w') as f:
+        data = app_name + ',' + mcu_name + ',' + rtos_name + ',' + rtos_version
+        print(data)
+        print(last_build_path + config_file)
+        f.write(data)
+
+def create_version_kconfig(f, item, title, rtos_options, rtos_ver_options):
+    for i, rtos in enumerate(rtos_options):
+        check_option = title.replace('VERSION', 'NAME') + '_' + rtos.upper().replace('-', '_')
+        f.write("if %s\n" % check_option)
         f.write("choice\n")
-        f.write("\tprompt \"My choice\"\n")
-        #f.write("\tdefault OPTION_%s\n" % apps_options[0])
+        f.write("\tprompt \"%s\"\n" % item)
+        #f.write("\tdefault OPTION_%s\n" % options_list[i][0].upper().replace('-', '_'))
         f.write("\n")
 
-        for i, option in enumerate(apps_options):
-            f.write("\tconfig OPTION_%s\n" % option.upper())
-            f.write("\t\tbool \"%s\"\n" % option)
-            f.write("\t\thelp\n")
-            f.write("\t\t  This is %s.\n" % option)
-            f.write("\n")
-
-        f.write("endchoice\n")
+        for j, option in enumerate(rtos_ver_options):
+            if option.startswith(rtos):
+                f.write("\tconfig %s_%s\n" % (title, option.replace(rtos + '_', '').upper().replace('-', '_').replace('.', '_')))
+                f.write("\t\tbool \"%s\"\n" % option.replace('_', '').replace(rtos, ''))
+                f.write("\t\thelp\n")
+                f.write("\t\t  This is %s.\n" % option)
+                f.write("\n")
+        f.write("endchoice\n")        
+        f.write("endif\n")
         f.write("\n")
 
-create_build_kconfig(all_apps)
+def create_build_kconfig(apps_options, mcus_options, rtos_options, rtos_ver_options):
+    items_list = [ 'Cur App Name', 'Cur MCU Name', 'Cur RTOS Name', 'Cur RTOS Version' ]
+    title_list = [ 'APP_NAME', 'MCU_NAME', 'RTOS_NAME', 'RTOS_VERSION']
+    options_list = [ apps_options, mcus_options, rtos_options, rtos_ver_options ]
+    add_check_list = [ False, False, False, True ]
+
+    with open(kconfig_file, "w") as f:
+        f.write("menu \"App Project Configuration\"\n\n")
+
+        for i, item in enumerate(items_list):
+            
+            if add_check_list[i]:
+                create_version_kconfig(f, item, title_list[i], rtos_options, rtos_ver_options)
+            else:
+                f.write("choice\n")
+                f.write("\tprompt \"%s\"\n" % item)
+                f.write("\tdefault %s_%s\n" % (title_list[i], options_list[i][0].upper().replace('-', '_')))
+                f.write("\n")
+
+                for j, option in enumerate(options_list[i]):
+                    f.write("\tconfig %s_%s\n" % (title_list[i], option.upper().replace('-', '_')))
+                    f.write("\t\tbool \"%s\"\n" % option)
+                    f.write("\t\thelp\n")
+                    f.write("\t\t  This is %s.\n" % option)
+                    f.write("\n")
+
+                f.write("endchoice\n")
+                f.write("\n")
+
+        f.write("endmenu\n")
+        f.write("\n")
+
+create_build_kconfig(all_apps, all_mcus, all_rtos, all_rtos_vers)
+
+# 定义一个自定义命令
+def my_scons_command(target, source, env):
+    os.chdir(cur_mcu_path)
+    print(cur_mcu_path)
+    # 执行命令
+    os.system('scons')
+
+def my_clean_command(target, source, env):
+    # 切换到目标目录
+    os.chdir(cur_mcu_path)
+    # 执行 scons -c 命令
+    os.system('scons -c')
+
+Command('scons', None, my_scons_command)
 
 print('\n\n--------------------------')
 
@@ -111,15 +210,25 @@ print('\n\n--------------------------')
 if GetOption('test'):
     # 执行测试
     print("Running tests...")
+    exit(0)
 
 if GetOption('list_app'):
     # 执行测试
     print("Running list_app...")
     list_app_func(apps_path)
+    exit(0)
 
 if GetOption('menuconfig'):
     # 执行测试
     print("Running menuconfig...")
     menuconfig_func(cur_mcu_path)
+    get_config_value_form_config_file_entry()
+    exit(0)
+
+if GetOption('clean'):
+    # 执行测试
+    print("Running clean...")
+    clean_func(cur_mcu_path)
 
 print('--------------------------\n\n')
+

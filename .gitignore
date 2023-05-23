@@ -20,5 +20,9 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+#others
 *.o
 out
+.config
+.sconsign.tmp
+.sconsign.dblite

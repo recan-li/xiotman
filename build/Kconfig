@@ -1,20 +1,111 @@
-
 menu "App Project Configuration"
 
-config APP_NAME
-    string "App Name"
-    default ""
+choice
+	prompt "Cur App Name"
+	default APP_NAME_APP_MUTEX_DEBUG
 
-config MCU_NAME
-    string "MCU Name"
-    default ""
+	config APP_NAME_APP_MUTEX_DEBUG
+		bool "app_mutex_debug"
+		help
+		  This is app_mutex_debug.
 
-config RTOS_NAME
-    string "RTOS Name"
-    default ""
+	config APP_NAME_APP_TASK_DEBUG
+		bool "app_task_debug"
+		help
+		  This is app_task_debug.
 
-config RTOS_VERSION
-    string "RTOS Version"
-    default ""
+	config APP_NAME_APP_UART_DEBUG
+		bool "app_uart_debug"
+		help
+		  This is app_uart_debug.
+
+endchoice
+
+choice
+	prompt "Cur MCU Name"
+	default MCU_NAME_QEMU_VEXPRESS_A9
+
+	config MCU_NAME_QEMU_VEXPRESS_A9
+		bool "qemu-vexpress-a9"
+		help
+		  This is qemu-vexpress-a9.
+
+	config MCU_NAME_RA2E1
+		bool "ra2e1"
+		help
+		  This is ra2e1.
+
+	config MCU_NAME_RA2L1
+		bool "ra2l1"
+		help
+		  This is ra2l1.
+
+	config MCU_NAME_RA4M2
+		bool "ra4m2"
+		help
+		  This is ra4m2.
+
+	config MCU_NAME_RA6M4
+		bool "ra6m4"
+		help
+		  This is ra6m4.
+
+endchoice
+
+choice
+	prompt "Cur RTOS Name"
+	default RTOS_NAME_FREERTOS
+
+	config RTOS_NAME_FREERTOS
+		bool "freertos"
+		help
+		  This is freertos.
+
+	config RTOS_NAME_RT_THREAD
+		bool "rt-thread"
+		help
+		  This is rt-thread.
+
+endchoice
+
+if RTOS_NAME_FREERTOS
+choice
+	prompt "Cur RTOS Version"
+
+	config RTOS_VERSION_10_4_X
+		bool "10.4.x"
+		help
+		  This is freertos_10.4.x.
+
+	config RTOS_VERSION_9_0_X
+		bool "9.0.x"
+		help
+		  This is freertos_9.0.x.
+
+endchoice
+endif
+
+if RTOS_NAME_RT_THREAD
+choice
+	prompt "Cur RTOS Version"
+
+	config RTOS_VERSION_3_1_X
+		bool "3.1.x"
+		help
+		  This is rt-thread_3.1.x.
+
+	config RTOS_VERSION_4_1_X
+		bool "4.1.x"
+		help
+		  This is rt-thread_4.1.x.
+
+	config RTOS_VERSION_5_0_X
+		bool "5.0.x"
+		help
+		  This is rt-thread_5.0.x.
+
+endchoice
+endif
 
 endmenu
+

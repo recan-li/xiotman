@@ -20,8 +20,13 @@ config PKGS_DIR
     option env="PKGS_ROOT"
     default "packages"
 
+source "$BUILD_DIR/Kconfig"
+
+menu "RTOS Configuration"
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
+endmenu
+
+menu "MCU Configuration"
 source "$BSP_DIR/drivers/Kconfig"
-source "$BUILD_DIR/Kconfig"
-source "$BUILD_DIR/Kconfig2"
+endmenu

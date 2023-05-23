@@ -2,7 +2,16 @@
 #define RT_CONFIG_H__
 
 /* Automatically generated file; DO NOT EDIT. */
-/* RT-Thread Configuration */
+/* RT-Thread Project Configuration */
+
+/* App Project Configuration */
+
+#define APP_NAME_APP_MUTEX_DEBUG
+#define MCU_NAME_QEMU_VEXPRESS_A9
+#define RTOS_NAME_RT_THREAD
+#define RTOS_VERSION_5_0_X
+
+/* RTOS Configuration */
 
 /* RT-Thread Kernel */
 
@@ -145,9 +154,6 @@
 /* u8g2: a monochrome graphic library */
 
 
-/* PainterEngine: A cross-platform graphics application framework written in C language */
-
-
 /* tools packages */
 
 
@@ -167,11 +173,19 @@
 
 /* peripheral libraries and drivers */
 
+/* sensors drivers */
+
+
+/* touch drivers */
+
 
 /* Kendryte SDK */
 
 
 /* AI packages */
+
+
+/* Signal Processing and Control Algorithm Packages */
 
 
 /* miscellaneous packages */
@@ -182,6 +196,43 @@
 
 
 /* entertainment: terminal games and other interesting software packages */
+
+
+/* Arduino libraries */
+
+
+/* Projects */
+
+
+/* Sensors */
+
+
+/* Display */
+
+
+/* Timing */
+
+
+/* Data Processing */
+
+
+/* Data Storage */
+
+/* Communication */
+
+
+/* Device Control */
+
+
+/* Other */
+
+
+/* Signal IO */
+
+
+/* Uncategorized */
+
+/* MCU Configuration */
 
 #define SOC_FAMILY_RENESAS
 #define SOC_SERIES_R7FA2L1
