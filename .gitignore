@@ -23,6 +23,11 @@ TestResults.xml
 #others
 *.o
 out
+build/Kconfig
+.app_config
 .config
+.config.old
 .sconsign.tmp
 .sconsign.dblite
+*.hex
+*.elf

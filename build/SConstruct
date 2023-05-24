@@ -1,5 +1,6 @@
 
 import os
+import shutil
 
 # 导入SCons的相关模块
 from SCons.Script import *
@@ -12,12 +13,14 @@ cur_mcu = ''
 cur_rtos = ''
 cur_rtos_ver = ''
 all_apps = []
-config_file = '.config'
+config_file = '.app_config'
 apps_path = '../apps/'
 mcus_path = '../mcu/'
 rtos_path = '../rtos/'
 last_build_path = '../../build/'
 kconfig_file = 'Kconfig'
+kconfig_dot_config_file = '.config'
+kconfig_dot_config_def_file = '.config_default'
 config_h_file = 'rtconfig.h'
 
 # 定义选项
@@ -25,23 +28,26 @@ AddOption("--test", action="store_true", dest="test",
           default=False, help="Run tests")
 AddOption("--list_app", action="store_true", dest="list_app",
               default=False, help="Run list_app")
-AddOption("--menuconfig", action="store_true", dest="menuconfig",
-              default=False, help="Run menuconfig")
+AddOption("--menuconfig", action="store", dest="menuconfig",
+              default=None, help="Run menuconfig")
 
 # 定义编译环境
 DefaultEnvironment(tools = [])
 env = Environment(tools = ['mingw'])
 
 def load_config(config_file):
-    with open(config_file, 'r') as f:
-        content = f.read()
-        string_array = content.split(',')
-        #print(string_array)
-    return string_array
+    if os.path.exists(config_file):
+        with open(config_file, 'r') as f:
+            content = f.read()
+            string_array = content.split(',')
+            #print(string_array)
+        return string_array
+    else:
+        return None
 
-def save_config(config_file, cur_app, cur_mcu):
+def save_config(config_file, cur_app, cur_mcu, cur_rtos, cur_rtos_ver):
     with open(config_file, 'w') as f:
-        content = f.write(cur_app + ',' + cur_mcu + '\n')
+        content = f.write(cur_app + ',' + cur_mcu + ',' + cur_rtos + ',' + cur_rtos_ver + '\n')
 
 def list_path_items(path, is_find_2nd_subdir):
     # 列出目录下的所有文件和子目录
@@ -60,7 +66,7 @@ def list_path_items(path, is_find_2nd_subdir):
                         subdirs.append(file + '_' + file2)    
             else:
                 subdirs.append(file)
-
+    print(subdirs)
     return subdirs
 
 def list_app_func(path):    
@@ -76,23 +82,22 @@ def menuconfig_func(target_path):
     print(os.getcwd())
     os.system('menuconfig')
 
+def app_menuconfig_func(is_silent): 
+    if is_silent:
+        os.system('menuconfig --silent')
+    else: 
+        os.system('menuconfig')
+
+def delete_rtconfig_h():
+    if os.path.exists(config_h_file):
+        os.remove(config_h_file)
+
 def clean_func(target_path):  
     os.chdir(target_path)
     print(os.getcwd())
-    os.system('scons -c')
-
-def scons_func(target_path):  
-    os.chdir(target_path)
-    print(os.getcwd())
-    os.system('scons')
+    os.system('scons -c -j16')
 
 ##################################################
-
-a = load_config(config_file)
-cur_app = a[0].strip()
-cur_mcu = a[1].strip()
-cur_rtos = a[2].strip()
-cur_rtos_ver = a[3].strip()
 
 all_apps = list_path_items(apps_path, False)
 all_mcus = list_path_items(mcus_path, False)
@@ -100,15 +105,46 @@ all_rtos = list_path_items(rtos_path, False)
 all_rtos_vers = list_path_items(rtos_path, True)
 #print(all_rtos_vers)
 
-cur_app_path = apps_path + '/' + cur_app
-cur_mcu_path = mcus_path + '/' + cur_mcu
-cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
-cur_config_h_file = cur_mcu_path + '/' + config_h_file
+def update_cur_build_config():
+    global cur_app
+    global cur_mcu
+    global cur_rtos
+    global cur_rtos_ver
+    global cur_app_path
+    global cur_mcu_path
+    global cur_rtos_path
+    global cur_config_h_file
+    a = load_config(config_file)
+    if a:
+        cur_app = a[0].strip()
+        cur_mcu = a[1].strip()
+        cur_rtos = a[2].strip()
+        cur_rtos_ver = a[3].strip()
+    else:
+        cur_app = all_apps[0]
+        cur_mcu = all_mcus[0]
+        cur_rtos = all_rtos[0]
+        cur_rtos_ver = all_rtos_vers[0].split('_')[1]
+        save_config(config_file, cur_app, cur_mcu, cur_rtos, cur_rtos_ver)
+
+    cur_app_path = apps_path + '/' + cur_app
+    cur_mcu_path = mcus_path + '/' + cur_mcu
+    cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
+    cur_config_h_file = cur_mcu_path + '/' + config_h_file
+
+update_cur_build_config()
 
 #print(cur_path)
 os.environ['BSP_ROOT'] = cur_path + '/' + cur_mcu_path
 os.environ['BUILD_ROOT'] = cur_path
 os.environ['RTT_ROOT'] = '../../rtos/' + cur_rtos + '/' + cur_rtos_ver
+
+def my_scons_command(target, source, env):
+    os.chdir(cur_mcu_path)
+    print('builging path : ' + os.getcwd())
+    os.system('scons -j16')
+
+Command('scons', None, my_scons_command)
 
 def get_config_value_form_config_file(config_h, key):
     with open(config_h, 'r') as f:
@@ -119,20 +155,21 @@ def get_config_value_form_config_file(config_h, key):
                 content = line.partition(key)[2].strip().lower().replace('_', '-')
                 if 'VERSION' in key:
                     content = content.replace('-', '.')
-                print(content)
+                #print(content)
                 result.append(content)
 
     return result
 
-def get_config_value_form_config_file_entry():
+def get_config_value_form_config_file_entry(config_h_file, config_file):
+    if not os.path.exists(config_h_file):
+        return
     app_name = get_config_value_form_config_file(config_h_file, 'APP_NAME_')[0]
     mcu_name = get_config_value_form_config_file(config_h_file, 'MCU_NAME_')[0]
     rtos_name = get_config_value_form_config_file(config_h_file, 'RTOS_NAME_')[0]
     rtos_version = get_config_value_form_config_file(config_h_file, 'RTOS_VERSION_')[0]
-    with open(last_build_path + config_file, 'w') as f:
+    with open(config_file, 'w') as f:
         data = app_name + ',' + mcu_name + ',' + rtos_name + ',' + rtos_version
-        print(data)
-        print(last_build_path + config_file)
+        #print(data)
         f.write(data)
 
 def create_version_kconfig(f, item, title, rtos_options, rtos_ver_options):
@@ -151,11 +188,12 @@ def create_version_kconfig(f, item, title, rtos_options, rtos_ver_options):
                 f.write("\t\thelp\n")
                 f.write("\t\t  This is %s.\n" % option)
                 f.write("\n")
-        f.write("endchoice\n")        
+        f.write("endchoice\n") 
+
         f.write("endif\n")
         f.write("\n")
 
-def create_build_kconfig(apps_options, mcus_options, rtos_options, rtos_ver_options):
+def create_default_build_kconfig_file(apps_options, mcus_options, rtos_options, rtos_ver_options):
     items_list = [ 'Cur App Name', 'Cur MCU Name', 'Cur RTOS Name', 'Cur RTOS Version' ]
     title_list = [ 'APP_NAME', 'MCU_NAME', 'RTOS_NAME', 'RTOS_VERSION']
     options_list = [ apps_options, mcus_options, rtos_options, rtos_ver_options ]
@@ -187,46 +225,42 @@ def create_build_kconfig(apps_options, mcus_options, rtos_options, rtos_ver_opti
         f.write("endmenu\n")
         f.write("\n")
 
-create_build_kconfig(all_apps, all_mcus, all_rtos, all_rtos_vers)
+def create_default_kconfig_dot_config_file():
+    if not os.path.exists(kconfig_dot_config_file):
+        shutil.copy(kconfig_dot_config_def_file, kconfig_dot_config_file)
+        app_menuconfig_func(True)
+        get_config_value_form_config_file_entry(config_h_file, config_file)
+        delete_rtconfig_h()
+        update_cur_build_config()
 
-# 定义一个自定义命令
-def my_scons_command(target, source, env):
-    os.chdir(cur_mcu_path)
-    print(cur_mcu_path)
-    # 执行命令
-    os.system('scons')
-
-def my_clean_command(target, source, env):
-    # 切换到目标目录
-    os.chdir(cur_mcu_path)
-    # 执行 scons -c 命令
-    os.system('scons -c')
-
-Command('scons', None, my_scons_command)
+create_default_build_kconfig_file(all_apps, all_mcus, all_rtos, all_rtos_vers)
+create_default_kconfig_dot_config_file()
 
 print('\n\n--------------------------')
 
 # 在构建过程中使用选项
 if GetOption('test'):
-    # 执行测试
     print("Running tests...")
     exit(0)
 
 if GetOption('list_app'):
-    # 执行测试
     print("Running list_app...")
     list_app_func(apps_path)
     exit(0)
 
-if GetOption('menuconfig'):
-    # 执行测试
-    print("Running menuconfig...")
-    menuconfig_func(cur_mcu_path)
-    get_config_value_form_config_file_entry()
+if GetOption('menuconfig'):  
+    value = GetOption('menuconfig')
+    if value == 'app':
+        print("Running app menuconfig...")
+        app_menuconfig_func(False)
+        get_config_value_form_config_file_entry(config_h_file, config_file)
+        delete_rtconfig_h()
+    else:
+        print("Running menuconfig...")
+        menuconfig_func(cur_mcu_path)
     exit(0)
 
 if GetOption('clean'):
-    # 执行测试
     print("Running clean...")
     clean_func(cur_mcu_path)
 
