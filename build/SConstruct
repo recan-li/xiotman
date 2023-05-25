@@ -95,7 +95,7 @@ def delete_rtconfig_h():
 def clean_func(target_path):  
     os.chdir(target_path)
     print(os.getcwd())
-    os.system('scons -c -j16')
+    os.system('scons -c')
 
 ##################################################
 
@@ -142,7 +142,7 @@ os.environ['RTT_ROOT'] = '../../rtos/' + cur_rtos + '/' + cur_rtos_ver
 def my_scons_command(target, source, env):
     os.chdir(cur_mcu_path)
     print('builging path : ' + os.getcwd())
-    os.system('scons -j16')
+    os.system('scons')
 
 Command('scons', None, my_scons_command)
 
