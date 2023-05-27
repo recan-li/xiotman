@@ -12,16 +12,22 @@ cur_app = ''
 cur_mcu = ''
 cur_rtos = ''
 cur_rtos_ver = ''
+cur_build_out_path = ''
+cur_bsp_root = ''
+cur_rtt_root = ''
 all_apps = []
 config_file = '.app_config'
 apps_path = '../apps/'
 mcus_path = '../mcu/'
 rtos_path = '../rtos/'
+out_path = '../out/'
 last_build_path = '../../build/'
 kconfig_file = 'Kconfig'
 kconfig_dot_config_file = '.config'
 kconfig_dot_config_def_file = '.config_default'
 config_h_file = 'rtconfig.h'
+cur_is_verbose = False
+mul_thread_n = 16
 
 # 定义选项
 AddOption("--test", action="store_true", dest="test",
@@ -30,6 +36,8 @@ AddOption("--list_app", action="store_true", dest="list_app",
               default=False, help="Run list_app")
 AddOption("--menuconfig", action="store", dest="menuconfig",
               default=None, help="Run menuconfig")
+AddOption("--verbose", action="store_true", dest="verbose",
+              default=None, help="Run verbose")
 
 # 定义编译环境
 DefaultEnvironment(tools = [])
@@ -92,10 +100,9 @@ def delete_rtconfig_h():
     if os.path.exists(config_h_file):
         os.remove(config_h_file)
 
-def clean_func(target_path):  
-    os.chdir(target_path)
-    print(os.getcwd())
-    os.system('scons -c')
+def clean_func(out_path):
+    if os.path.exists(out_path):
+        shutil.rmtree(out_path)
 
 ##################################################
 
@@ -114,6 +121,10 @@ def update_cur_build_config():
     global cur_mcu_path
     global cur_rtos_path
     global cur_config_h_file
+    global cur_build_out_path
+    global cur_bsp_root
+    global cur_rtt_root
+
     a = load_config(config_file)
     if a:
         cur_app = a[0].strip()
@@ -131,18 +142,35 @@ def update_cur_build_config():
     cur_mcu_path = mcus_path + '/' + cur_mcu
     cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
     cur_config_h_file = cur_mcu_path + '/' + config_h_file
+    cur_build_out_path = cur_path + '/' + out_path + cur_app + '/'
+    cur_bsp_root = cur_path + '/' + cur_mcu_path
+    cur_rtt_root = cur_path + '/' + rtos_path + cur_rtos + '/' + cur_rtos_ver
 
 update_cur_build_config()
 
+def install_sys_env_value(key, value):
+    cmd = r'setx %s %s' %(key, value)
+    #print(cmd)
+    os.system(cmd)
+
 #print(cur_path)
-os.environ['BSP_ROOT'] = cur_path + '/' + cur_mcu_path
+os.environ['BUILD_OUT_DIR'] = cur_build_out_path
+os.environ['BSP_ROOT'] = cur_bsp_root
 os.environ['BUILD_ROOT'] = cur_path
-os.environ['RTT_ROOT'] = '../../rtos/' + cur_rtos + '/' + cur_rtos_ver
+os.environ['RTT_ROOT'] = cur_rtt_root
+
+def my_scons_command1(target, source, env):
+    sconstruct_file = cur_mcu_path + '/SConstruct'
+    cmd = ' scons --verbose -f ' + sconstruct_file
+    os.system(cmd)
 
 def my_scons_command(target, source, env):
     os.chdir(cur_mcu_path)
     print('builging path : ' + os.getcwd())
-    os.system('scons')
+    if cur_is_verbose:
+        os.system('scons --verbose -j' + str(mul_thread_n))
+    else:
+        os.system('scons -j' + str(mul_thread_n))
 
 Command('scons', None, my_scons_command)
 
@@ -248,6 +276,10 @@ if GetOption('list_app'):
     list_app_func(apps_path)
     exit(0)
 
+if GetOption('verbose'):
+    print("Running verbose")
+    cur_is_verbose = True    
+
 if GetOption('menuconfig'):  
     value = GetOption('menuconfig')
     if value == 'app':
@@ -262,7 +294,8 @@ if GetOption('menuconfig'):
 
 if GetOption('clean'):
     print("Running clean...")
-    clean_func(cur_mcu_path)
+    clean_func(cur_build_out_path)
+    exit(0)
 
 print('--------------------------\n\n')
 

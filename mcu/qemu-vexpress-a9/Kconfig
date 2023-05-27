@@ -1,10 +1,5 @@
 mainmenu "RT-Thread Project Configuration"
 
-config BUILD_DIR
-    string
-    option env="BUILD_ROOT"
-    default "../../build"
-
 config BSP_DIR
     string
     option env="BSP_ROOT"
@@ -19,8 +14,6 @@ config PKGS_DIR
     string
     option env="PKGS_ROOT"
     default "packages"
-
-source "$BUILD_DIR/Kconfig"
 
 menu "RTOS Configuration"
 source "$RTT_DIR/Kconfig"

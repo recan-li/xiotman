@@ -25,9 +25,10 @@ automac_h_fn = os.path.join(os.path.dirname(__file__), 'drivers', 'automac.h')
 with open(automac_h_fn, 'w') as f:
     f.write(header + get_mac_address() + end)
 
-# install RTT_ROOT
-rtt_root = os.getcwd() + '/../../rtos/rt-thread/5.0.x/'
-os.environ['RTT_ROOT'] = rtt_root
+if os.getenv('BUILD_OUT_DIR'):
+    BUILD_OUT_DIR = os.getenv('BUILD_OUT_DIR')
+else:
+    BUILD_OUT_DIR = ''
 
 # toolchains options
 ARCH        ='arm'
@@ -58,7 +59,7 @@ if PLATFORM == 'gcc':
     CXXFLAGS= DEVICE + CFPFLAGS + ' -Wall -fdiagnostics-color=always'
     CFLAGS  = DEVICE + CFPFLAGS + ' -Wall -Wno-cpp -std=gnu99 -D_POSIX_SOURCE -fdiagnostics-color=always'
     AFLAGS  = DEVICE + ' -c' + AFPFLAGS + ' -x assembler-with-cpp'    
-    LFLAGS  = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,system_vectors -T '+ LINK_SCRIPT + ' -lsupc++ -lgcc -static'
+    LFLAGS  = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,system_vectors -T '+ LINK_SCRIPT + ' -lsupc++ -lgcc -static'
     CPATH   = ''
     LPATH   = ''
 
@@ -78,4 +79,5 @@ if PLATFORM == 'gcc':
     M_POST_ACTION = STRIP + ' -R .hash $TARGET\n' + SIZE + ' $TARGET \n'
 
     DUMP_ACTION = OBJDUMP + ' -D -S $TARGET > rtt.asm\n'
-    POST_ACTION = OBJCPY + ' -O binary $TARGET rtthread.bin\n' + SIZE + ' $TARGET \n'
+    POST_ACTION = OBJCPY + ' -O binary $TARGET ' + BUILD_OUT_DIR + 'rtthread.bin\n' + SIZE + ' $TARGET \n'
+    POST_ACTION = POST_ACTION + 'cp -rf qemu* ' + BUILD_OUT_DIR + ' \n'

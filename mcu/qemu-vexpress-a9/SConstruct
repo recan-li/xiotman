@@ -10,7 +10,8 @@ else:
 sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
 from building import *
 
-TARGET = 'rtthread.' + rtconfig.TARGET_EXT
+TARGET = rtconfig.BUILD_OUT_DIR + 'rtthread.' + rtconfig.TARGET_EXT
+print(TARGET)
 
 DefaultEnvironment(tools=[])
 env = Environment(tools = ['mingw'],

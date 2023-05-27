@@ -370,8 +370,15 @@ def PrepareBuilding(env, root_directory, has_libcpu=False, remove_components = [
     # would find the wrong source code to compile.
     bsp_vdir = 'build'
     kernel_vdir = 'build/kernel'
+
+    if os.getenv('BUILD_OUT_DIR'):
+        build_out_vdir = os.getenv('BUILD_OUT_DIR')
+        kernel_vdir = build_out_vdir + '/kernel'
+    else:
+        build_out_vdir = bsp_vdir
+
     # board build script
-    objs = SConscript('SConscript', variant_dir=bsp_vdir, duplicate=0)
+    objs = SConscript('SConscript', variant_dir=build_out_vdir, duplicate=0)
     # include kernel
     objs.extend(SConscript(Rtt_Root + '/src/SConscript', variant_dir=kernel_vdir + '/src', duplicate=0))
     # include libcpu
