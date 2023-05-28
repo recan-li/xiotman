@@ -31,3 +31,4 @@ build/Kconfig
 .sconsign.dblite
 *.hex
 *.elf
+*.pyc

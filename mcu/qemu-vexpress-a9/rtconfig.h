@@ -4,6 +4,12 @@
 /* Automatically generated file; DO NOT EDIT. */
 /* RT-Thread Project Configuration */
 
+/* APP Configuration */
+
+/* APP Configuration */
+
+#define APP_DEBUG
+
 /* RTOS Configuration */
 
 /* RT-Thread Kernel */

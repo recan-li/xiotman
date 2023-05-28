@@ -1,6 +1,12 @@
 import os
 import sys
 
+# build out path
+if os.getenv('BUILD_OUT_DIR'):
+    BUILD_OUT_DIR = os.getenv('BUILD_OUT_DIR')
+else:
+    BUILD_OUT_DIR = ''
+
 # toolchains options
 ARCH='arm'
 CPU='cortex-m4'
@@ -46,7 +52,7 @@ if PLATFORM == 'gcc':
     DEVICE = ' -mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections'
     CFLAGS = DEVICE + ' -Dgcc'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb '
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -T script/fsp.ld -L script/'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,Reset_Handler -T script/fsp.ld -L script/'
 
     CPATH = ''
     LPATH = ''
@@ -57,8 +63,8 @@ if PLATFORM == 'gcc':
     else:
         CFLAGS += ' -Os'
 
-    POST_ACTION = OBJCPY + ' -O ihex $TARGET rtthread.hex\n' + SIZE + ' $TARGET \n'
-    # POST_ACTION += OBJCPY + ' -O binary $TARGET rtthread.bin\n' + SIZE + ' $TARGET \n'
+    POST_ACTION = OBJCPY + ' -O ihex $TARGET ' + BUILD_OUT_DIR + 'rtthread.hex\n' + SIZE + ' $TARGET \n'
+    # POST_ACTION += OBJCPY + ' -O binary $TARGET ' + BUILD_OUT_DIR + 'rtthread.bin\n' + SIZE + ' $TARGET \n'
 
 elif PLATFORM == 'armclang':
     # toolchains
@@ -92,7 +98,7 @@ elif PLATFORM == 'armclang':
     else:
         CFLAGS += ' -Os'
 
-    POST_ACTION = 'fromelf --bin $TARGET --output rtthread.bin \nfromelf -z $TARGET \n'
+    POST_ACTION = 'fromelf --bin $TARGET --output ' + BUILD_OUT_DIR + 'rtthread.bin \nfromelf -z $TARGET \n'
 
 def dist_handle(BSP_ROOT, dist_dir):
     import sys

@@ -25,10 +25,17 @@ automac_h_fn = os.path.join(os.path.dirname(__file__), 'drivers', 'automac.h')
 with open(automac_h_fn, 'w') as f:
     f.write(header + get_mac_address() + end)
 
+# build out path
 if os.getenv('BUILD_OUT_DIR'):
     BUILD_OUT_DIR = os.getenv('BUILD_OUT_DIR')
 else:
     BUILD_OUT_DIR = ''
+
+# user app root path
+if os.getenv('APP_ROOT'):
+    USER_APP_DIR = os.getenv('APP_ROOT')
+else:
+    USER_APP_DIR = ''
 
 # toolchains options
 ARCH        ='arm'

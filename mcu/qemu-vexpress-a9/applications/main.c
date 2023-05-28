@@ -12,9 +12,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+extern int app_main_entry(void *arg);
+
 int main(void)
 {
-    printf("Hello RT-Thread!\n");
-
-    return 0;
+    return app_main_entry(NULL);
 }

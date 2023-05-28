@@ -28,6 +28,8 @@ kconfig_dot_config_def_file = '.config_default'
 config_h_file = 'rtconfig.h'
 cur_is_verbose = False
 mul_thread_n = 16
+app_mcu_link_symbol_l = '('
+app_mcu_link_symbol_r = ')'
 
 # 定义选项
 AddOption("--test", action="store_true", dest="test",
@@ -101,6 +103,7 @@ def delete_rtconfig_h():
         os.remove(config_h_file)
 
 def clean_func(out_path):
+    print(out_path)
     if os.path.exists(out_path):
         shutil.rmtree(out_path)
 
@@ -136,13 +139,16 @@ def update_cur_build_config():
         cur_mcu = all_mcus[0]
         cur_rtos = all_rtos[0]
         cur_rtos_ver = all_rtos_vers[0].split('_')[1]
+        print(all_apps)
+        print(cur_app)
         save_config(config_file, cur_app, cur_mcu, cur_rtos, cur_rtos_ver)
 
-    cur_app_path = apps_path + '/' + cur_app
+    cur_app_path = cur_path + '/' + apps_path + '/' + cur_app
+    print(cur_app_path)
     cur_mcu_path = mcus_path + '/' + cur_mcu
     cur_rtos_path = rtos_path + '/' + cur_rtos + '/' + cur_rtos_ver
     cur_config_h_file = cur_mcu_path + '/' + config_h_file
-    cur_build_out_path = cur_path + '/' + out_path + cur_app + '/'
+    cur_build_out_path = cur_path + '/' + out_path + cur_app + app_mcu_link_symbol_l + cur_mcu +  app_mcu_link_symbol_r + '/'
     cur_bsp_root = cur_path + '/' + cur_mcu_path
     cur_rtt_root = cur_path + '/' + rtos_path + cur_rtos + '/' + cur_rtos_ver
 
@@ -158,6 +164,7 @@ os.environ['BUILD_OUT_DIR'] = cur_build_out_path
 os.environ['BSP_ROOT'] = cur_bsp_root
 os.environ['BUILD_ROOT'] = cur_path
 os.environ['RTT_ROOT'] = cur_rtt_root
+os.environ['APP_ROOT'] = cur_app_path
 
 def my_scons_command1(target, source, env):
     sconstruct_file = cur_mcu_path + '/SConstruct'
@@ -174,14 +181,17 @@ def my_scons_command(target, source, env):
 
 Command('scons', None, my_scons_command)
 
-def get_config_value_form_config_file(config_h, key):
+def get_config_value_form_config_file(config_h, key, is_replace_symbol):
     with open(config_h, 'r') as f:
         lines = f.readlines()
         result = []
         for line in lines:
             if key in line:
-                content = line.partition(key)[2].strip().lower().replace('_', '-')
+                content = line.partition(key)[2].strip().lower()
+                if is_replace_symbol:
+                    content = content.replace('_', '-')
                 if 'VERSION' in key:
+                    content = content.replace('_', '.')
                     content = content.replace('-', '.')
                 #print(content)
                 result.append(content)
@@ -191,10 +201,10 @@ def get_config_value_form_config_file(config_h, key):
 def get_config_value_form_config_file_entry(config_h_file, config_file):
     if not os.path.exists(config_h_file):
         return
-    app_name = get_config_value_form_config_file(config_h_file, 'APP_NAME_')[0]
-    mcu_name = get_config_value_form_config_file(config_h_file, 'MCU_NAME_')[0]
-    rtos_name = get_config_value_form_config_file(config_h_file, 'RTOS_NAME_')[0]
-    rtos_version = get_config_value_form_config_file(config_h_file, 'RTOS_VERSION_')[0]
+    app_name = get_config_value_form_config_file(config_h_file, 'APP_NAME_', False)[0]
+    mcu_name = get_config_value_form_config_file(config_h_file, 'MCU_NAME_', True)[0]
+    rtos_name = get_config_value_form_config_file(config_h_file, 'RTOS_NAME_', True)[0]
+    rtos_version = get_config_value_form_config_file(config_h_file, 'RTOS_VERSION_', False)[0]
     with open(config_file, 'w') as f:
         data = app_name + ',' + mcu_name + ',' + rtos_name + ',' + rtos_version
         #print(data)
@@ -228,7 +238,7 @@ def create_default_build_kconfig_file(apps_options, mcus_options, rtos_options, 
     add_check_list = [ False, False, False, True ]
 
     with open(kconfig_file, "w") as f:
-        f.write("menu \"App Project Configuration\"\n\n")
+        f.write("menu \"Building App Project Configuration\"\n\n")
 
         for i, item in enumerate(items_list):
             

@@ -1,4 +1,4 @@
-menu "App Project Configuration"
+menu "Building App Project Configuration"
 
 choice
 	prompt "Cur App Name"
