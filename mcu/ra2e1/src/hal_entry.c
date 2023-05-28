@@ -15,19 +15,11 @@
 //#define LED1_PIN    "P404" /* Onboard LED pins */
 #define USER_INPUT  "P004"
 
+extern int app_main_entry(void *arg);
+
 void hal_entry(void)
 {
-	uint32_t cnt = 0;
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_uint32_t led1_pin = rt_pin_get(LED1_PIN);
-    while (1)
-    {
-        rt_pin_write(led1_pin, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(led1_pin, PIN_LOW);
-        rt_thread_mdelay(500);
-        rt_kprintf("cnt ---> === 999 ...... %d\r\n", ++cnt);
-    }
+	app_main_entry(NULL);
 }
 
 void irq_callback_test(void *args)

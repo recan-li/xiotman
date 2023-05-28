@@ -16,17 +16,11 @@
 #define LED3_PIN    BSP_IO_PORT_01_PIN_06
 #define USER_INPUT  "P105"
 
+extern int app_main_entry(void *arg);
+
 void hal_entry(void)
 {
-    rt_kprintf("\nHello RT-Thread!\n");
-
-    while (1)
-    {
-        rt_pin_write(LED3_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED3_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
+    app_main_entry(NULL);
 }
 
 void irq_callback_test(void *args)

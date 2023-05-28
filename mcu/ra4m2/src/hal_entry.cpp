@@ -20,6 +20,7 @@ extern "C"{
 }
 #endif
 
+#if 0
 #include "smart_room.h"
 
 void hal_entry(void)
@@ -50,3 +51,13 @@ void hal_entry(void)
     }
 }
 
+#else
+
+extern "C" int app_main_entry(void *arg);
+
+void hal_entry(void)
+{
+    app_main_entry(NULL);
+}
+
+#endif

@@ -7,6 +7,12 @@ if os.getenv('BUILD_OUT_DIR'):
 else:
     BUILD_OUT_DIR = ''
 
+# user app root path
+if os.getenv('APP_ROOT'):
+    USER_APP_DIR = os.getenv('APP_ROOT')
+else:
+    USER_APP_DIR = ''
+
 # toolchains options
 ARCH='arm'
 CPU='cortex-m23'

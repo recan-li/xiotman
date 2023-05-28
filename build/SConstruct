@@ -292,8 +292,8 @@ if GetOption('verbose'):
 
 if GetOption('menuconfig'):  
     value = GetOption('menuconfig')
-    if value == 'app':
-        print("Running app menuconfig...")
+    if value == 'build':
+        print("Running build menuconfig...")
         app_menuconfig_func(False)
         get_config_value_form_config_file_entry(config_h_file, config_file)
         delete_rtconfig_h()

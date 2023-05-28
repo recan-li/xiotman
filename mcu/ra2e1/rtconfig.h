@@ -4,13 +4,6 @@
 /* Automatically generated file; DO NOT EDIT. */
 /* RT-Thread Project Configuration */
 
-/* App Project Configuration */
-
-#define APP_NAME_APP_MUTEX_DEBUG
-#define MCU_NAME_QEMU_VEXPRESS_A9
-#define RTOS_NAME_RT_THREAD
-#define RTOS_VERSION_5_0_X
-
 /* RTOS Configuration */
 
 /* RT-Thread Kernel */
