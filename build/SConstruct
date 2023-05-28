@@ -21,6 +21,7 @@ apps_path = '../apps/'
 mcus_path = '../mcu/'
 rtos_path = '../rtos/'
 out_path = '../out/'
+packages_path = '../components/packages'
 last_build_path = '../../build/'
 kconfig_file = 'Kconfig'
 kconfig_dot_config_file = '.config'
@@ -90,7 +91,7 @@ def list_app_func(path):
 def menuconfig_func(target_path):  
     os.chdir(target_path)
     print(os.getcwd())
-    os.system('menuconfig')
+    os.system('menuconfig  --silent')
 
 def app_menuconfig_func(is_silent): 
     if is_silent:
@@ -127,6 +128,7 @@ def update_cur_build_config():
     global cur_build_out_path
     global cur_bsp_root
     global cur_rtt_root
+    global cur_packages_src_root
 
     a = load_config(config_file)
     if a:
@@ -151,6 +153,7 @@ def update_cur_build_config():
     cur_build_out_path = cur_path + '/' + out_path + cur_app + app_mcu_link_symbol_l + cur_mcu +  app_mcu_link_symbol_r + '/'
     cur_bsp_root = cur_path + '/' + cur_mcu_path
     cur_rtt_root = cur_path + '/' + rtos_path + cur_rtos + '/' + cur_rtos_ver
+    cur_packages_src_root = cur_path + '/' + packages_path
 
 update_cur_build_config()
 
@@ -165,6 +168,7 @@ os.environ['BSP_ROOT'] = cur_bsp_root
 os.environ['BUILD_ROOT'] = cur_path
 os.environ['RTT_ROOT'] = cur_rtt_root
 os.environ['APP_ROOT'] = cur_app_path
+os.environ['PKGS_SRC_ROOT'] = cur_packages_src_root
 
 def my_scons_command1(target, source, env):
     sconstruct_file = cur_mcu_path + '/SConstruct'
@@ -238,7 +242,7 @@ def create_default_build_kconfig_file(apps_options, mcus_options, rtos_options, 
     add_check_list = [ False, False, False, True ]
 
     with open(kconfig_file, "w") as f:
-        f.write("menu \"Building App Project Configuration\"\n\n")
+        f.write("mainmenu \"Building App Project Configuration\"\n\n")
 
         for i, item in enumerate(items_list):
             
@@ -260,7 +264,6 @@ def create_default_build_kconfig_file(apps_options, mcus_options, rtos_options, 
                 f.write("endchoice\n")
                 f.write("\n")
 
-        f.write("endmenu\n")
         f.write("\n")
 
 def create_default_kconfig_dot_config_file():

@@ -1,4 +1,4 @@
-menu "Building App Project Configuration"
+mainmenu "Building App Project Configuration"
 
 choice
 	prompt "Cur App Name"
@@ -8,6 +8,11 @@ choice
 		bool "app_mutex_debug"
 		help
 		  This is app_mutex_debug.
+
+	config APP_NAME_APP_SMART_ROOM
+		bool "app_smart_room"
+		help
+		  This is app_smart_room.
 
 	config APP_NAME_APP_TASK_DEBUG
 		bool "app_task_debug"
@@ -107,5 +112,4 @@ choice
 endchoice
 endif
 
-endmenu
 

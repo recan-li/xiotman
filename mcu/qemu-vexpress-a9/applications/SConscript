@@ -19,4 +19,9 @@ if os.path.exists(os.path.join(user_app_path, 'SConscript')):
 	group = group + SConscript(os.path.join(user_app_path, 'SConscript'), 
         variant_dir=rtconfig.BUILD_OUT_DIR + '/user_app/', duplicate=0)
 
+# add component rtt packages src search
+if os.path.exists(os.path.join(comp_packages_path, 'SConscript')):
+	group = group + SConscript(os.path.join(comp_packages_path, 'SConscript'), 
+        variant_dir=rtconfig.BUILD_OUT_DIR + '/rtt_packages/', duplicate=0)
+
 Return('group')

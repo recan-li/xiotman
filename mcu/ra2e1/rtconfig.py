@@ -13,6 +13,12 @@ if os.getenv('APP_ROOT'):
 else:
     USER_APP_DIR = ''
 
+# packages src path
+if os.getenv('PKGS_SRC_ROOT'):
+    COMP_PACKAGES_DIR = os.getenv('PKGS_SRC_ROOT')
+else:
+    COMP_PACKAGES_DIR = 'packages'
+
 # toolchains options
 ARCH='arm'
 CPU='cortex-m23'
