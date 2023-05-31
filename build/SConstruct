@@ -88,12 +88,12 @@ def list_app_func(path):
     print('cur rtos    : ' + cur_rtos)
     print('cur rtos ver: ' + cur_rtos_ver)
 
-def menuconfig_func(target_path):  
+def rtos_menuconfig_func(target_path):  
     os.chdir(target_path)
     print(os.getcwd())
-    os.system('menuconfig  --silent')
+    os.system('menuconfig')
 
-def app_menuconfig_func(is_silent): 
+def build_menuconfig_func(is_silent): 
     if is_silent:
         os.system('menuconfig --silent')
     else: 
@@ -269,46 +269,47 @@ def create_default_build_kconfig_file(apps_options, mcus_options, rtos_options, 
 def create_default_kconfig_dot_config_file():
     if not os.path.exists(kconfig_dot_config_file):
         shutil.copy(kconfig_dot_config_def_file, kconfig_dot_config_file)
-        app_menuconfig_func(True)
+        build_menuconfig_func(True)
         get_config_value_form_config_file_entry(config_h_file, config_file)
         delete_rtconfig_h()
         update_cur_build_config()
 
+def check_input_options():
+    print('\n\n--------------------------')
+
+    # 在构建过程中使用选项
+    if GetOption('test'):
+        print("Running tests ...")
+        exit(0)
+
+    if GetOption('list_app'):
+        print("Running list_app ...")
+        list_app_func(apps_path)
+        exit(0)
+
+    if GetOption('verbose'):
+        print("Running verbose")
+        cur_is_verbose = True    
+
+    if GetOption('menuconfig'):  
+        value = GetOption('menuconfig')
+        if value == 'build':
+            print("Running build menuconfig ...")
+            build_menuconfig_func(False)
+            get_config_value_form_config_file_entry(config_h_file, config_file)
+            delete_rtconfig_h()
+        else:
+            print("Running rtos menuconfig ...")
+            rtos_menuconfig_func(cur_mcu_path)
+        exit(0)
+
+    if GetOption('clean'):
+        print("Running clean ...")
+        clean_func(cur_build_out_path)
+        exit(0)
+
+    print('--------------------------\n\n')
+
 create_default_build_kconfig_file(all_apps, all_mcus, all_rtos, all_rtos_vers)
 create_default_kconfig_dot_config_file()
-
-print('\n\n--------------------------')
-
-# 在构建过程中使用选项
-if GetOption('test'):
-    print("Running tests...")
-    exit(0)
-
-if GetOption('list_app'):
-    print("Running list_app...")
-    list_app_func(apps_path)
-    exit(0)
-
-if GetOption('verbose'):
-    print("Running verbose")
-    cur_is_verbose = True    
-
-if GetOption('menuconfig'):  
-    value = GetOption('menuconfig')
-    if value == 'build':
-        print("Running build menuconfig...")
-        app_menuconfig_func(False)
-        get_config_value_form_config_file_entry(config_h_file, config_file)
-        delete_rtconfig_h()
-    else:
-        print("Running menuconfig...")
-        menuconfig_func(cur_mcu_path)
-    exit(0)
-
-if GetOption('clean'):
-    print("Running clean...")
-    clean_func(cur_build_out_path)
-    exit(0)
-
-print('--------------------------\n\n')
-
+check_input_options()
