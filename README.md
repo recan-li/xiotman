@@ -1,4 +1,4 @@
-![image-20230602231936904](http://share.recan-li.cn/bed/2023/06/02/dJs1vLwfIC3DnlU.png?my_wx_id=721317716)
+![image-20230602231936904](docs/xiotman-logo.png)
 
 
 
@@ -10,7 +10,7 @@ xiotman，它是一套致力于解决物联网终端应用多样化挑战的软�
 
 # xiotman的架构
 
-![image-20230602232120443](http://share.recan-li.cn/bed/2023/06/02/muX7t6ywIS5b41D.png?my_wx_id=721317716)
+![image-20230602232120443](docs/xiotman-architecture.png)
 
 
 
@@ -25,9 +25,9 @@ xiotman，它是一套致力于解决物联网终端应用多样化挑战的软�
 
 # xiotman的目录结构
 
-![img](http://share.recan-li.cn/bed/2023/06/02/D4KFpNIBVcjbqX8.png?my_wx_id=721317716)
+![img](docs/xiotman-layers.png)
 
-![img](http://share.recan-li.cn/bed/2023/06/02/iWHI54odmSsvRel.png?my_wx_id=721317716)
+![img](docs/xiotman-software.png)
 
 
 
@@ -119,7 +119,7 @@ xiotman 系统完全开源，遵循 Apache License 2.0 开源许可协议，可�
 
 本项目由 [架构师李肯](http://yyds.recan-li.cn) 的独家个人社区（[架构师李肯带你学嵌入式](https://bbs.csdn.net/forums/recan-iot?typeId=2920953)）进行维护，欢迎加入我们的社区，了解更多。
 
-![image-20230602230745193](http://share.recan-li.cn/bed/2023/06/02/VQpnBce3FDx2H7I.png?my_wx_id=721317716)
+![image-20230602230745193](docs/recan-community.png)
 
 
 
@@ -127,4 +127,4 @@ xiotman 系统完全开源，遵循 Apache License 2.0 开源许可协议，可�
 
 如果您对 **xiotman** 感兴趣，并希望参与 **xiotman** 的开发并成为代码贡献者，请扫描下方的二维码，与我取得联系。
 
-![img](http://share.recan-li.cn/bed/2023/06/02/Kys7JrLPfQqRV3d.png?my_wx_id=721317716)
+![img](docs/wechat.png)
