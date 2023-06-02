@@ -6,6 +6,7 @@ cwd     = GetCurrentDir()
 src     = Glob('*.c') + Glob('*.cpp')
 CPPPATH = [cwd]
 user_app_path = rtconfig.USER_APP_DIR
+comp_packages_path = rtconfig.COMP_PACKAGES_DIR
 
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
 

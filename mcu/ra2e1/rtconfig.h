@@ -4,6 +4,9 @@
 /* Automatically generated file; DO NOT EDIT. */
 /* RT-Thread Project Configuration */
 
+/* APP Configuration */
+
+
 /* RTOS Configuration */
 
 /* RT-Thread Kernel */
