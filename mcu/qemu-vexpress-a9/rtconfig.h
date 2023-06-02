@@ -6,8 +6,6 @@
 
 /* APP Configuration */
 
-/* APP Configuration */
-
 #define APP_DEBUG
 
 /* RTOS Configuration */
