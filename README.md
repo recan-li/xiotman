@@ -107,6 +107,61 @@ xiotman 中支持选用 **qemu-vexpress-a9** 这块MCU，与QEMU硬件模拟，�
 
 [QEMU 入门指南(Ubuntu)](documentation/quick-start/quick_start_qemu/quick_start_qemu_linux.md)
 
+以下操作步骤可以帮助你，快速在PC环境模拟运行，以Windows为例：
+
+1. 安装好env环境和scons工具；
+2. 启动env环境，进入到 **xiotman/build** 目录；
+3. 执行 `scons --list_app` 查看当前选择编译的应用、MCU、RTOS版本等信息；
+
+![image-20230603084240034](docs/get-start-1.png)
+
+4. 执行 `scons --menuconfig=build` 选择对应的应用、MCU及RTOS版本，默认的情况下，选择的是 app_uart_debug应用、qemu-vexpress-a9、rt-thread-v5.0.x版本；
+
+![image-20230603084502429](docs/get-start-2.png)
+
+5. 执行 `scons --clean` 清除当前选择的应用的中间编译输出；
+
+![image-20230603084602930](docs/get-start-3.png)
+
+6. 执行 `scons` 开始编译当前应用；
+
+![image-20230603085604366](docs/get-start-4.png)
+
+7. 成功完成编译后，在 `xiotman/out/app_uart_debug(qemu-vexpress-a9)/` 目录可以看到对应的固件文件输出；
+
+![image-20230603085544819](docs/get-start-5.png)
+
+8. 执行编译输出的固件；进入到 `xiotman/out/app_uart_debug(qemu-vexpress-a9)/` 目录，执行 `./qemu-nographic.bat` 即可运行；
+
+![image-20230603085818951](docs/get-start-6.png)
+
+这里的运行与 `app_uart_debug ` 的应用逻辑是一致的：
+
+```c
+int app_main_entry(void *arg)
+{
+	uint32_t cnt = 0;
+
+    rt_kprintf("\nHello XIoTMan@RT-Thread !\n");
+    
+    while (1)
+    {
+        rt_thread_mdelay(1000);
+        rt_kprintf("cnt ---> === 666666 ...... %d\r\n", ++cnt);
+    }
+
+    return 0;
+}
+```
+
+
+
+至此，已经完成了xiotman在PC环境的验证，如果需要编译其他应用或其他MCU平台的代码，只需要回到build目录，执行 `scons --menuconfig=build` 即可选择；同时xiotman还保留了原生的 `RTOS` 的配置，执行 `scons --menuconfig=rtos` 即可进入配置：
+
+![image-20230603090159760](docs/get-start-7.png)
+
+![image-20230603090145210](docs/get-start-8.png)
+
 
 
 # **许可协议**
