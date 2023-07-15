@@ -4,6 +4,7 @@
 #include "wifi.h"
 #include "mqtt.h"
 #include "led.h"
+#include "sd.h"
 
 static void app_thread_entry(void *parameter)
 {
@@ -13,6 +14,8 @@ static void app_thread_entry(void *parameter)
     smart_led_init(NULL);
 
     sys_led_init(NULL);
+
+    sd_init();
 
     mqtt_bafa_init(NULL);
 
