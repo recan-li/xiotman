@@ -43,3 +43,22 @@ int smart_led_init(void *arg)
 
     return 0;
 }
+
+int sys_led_init(void *arg)
+{
+    rt_pin_mode(CFG_SYS_LED_PIN, PIN_MODE_OUTPUT);
+
+    rt_pin_write(CFG_SYS_LED_PIN, SMART_LED_ON);
+
+    return 0;
+}
+
+int sys_led_loop(void)
+{
+    while(1) {
+        rt_pin_write(CFG_SYS_LED_PIN, SMART_LED_ON);
+        rt_thread_mdelay(1000);
+        rt_pin_write(CFG_SYS_LED_PIN, SMART_LED_OFF);
+        rt_thread_mdelay(1000);
+    }
+}

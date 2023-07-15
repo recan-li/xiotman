@@ -14,6 +14,7 @@
 #include "rtdevice.h"
 
 /* led module configuration */
+#define CFG_SYS_LED_PIN 					GET_PIN(0, 0)
 #define CFG_LED_PIN 						GET_PIN(0, 1)
 #define CFG_LED_ON                      	PIN_LOW
 #define CFG_LED_OFF                     	PIN_HIGH

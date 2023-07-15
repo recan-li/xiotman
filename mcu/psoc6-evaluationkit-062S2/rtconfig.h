@@ -340,6 +340,8 @@
 #define BSP_USING_SDCARD_CARD_IF_PWR_EN_PIN -1
 #define BSP_USING_SDCARD_CARD_MECH_WRITE_PROT_PIN -1
 #define BSP_USING_SDCARD_CARD_EMMC_RESET_PIN -1
+#define BSP_USING_FS
+#define BSP_USING_SDCARD_FS
 
 /* Board extended module Drivers */
 

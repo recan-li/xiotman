@@ -11,12 +11,15 @@ static void app_thread_entry(void *parameter)
 
     //network is ready now ...
     smart_led_init(NULL);
-    
+
+    sys_led_init(NULL);
+
     mqtt_bafa_init(NULL);
 
     while(1) {
         rt_thread_mdelay(1000);
         //rt_kprintf("tick ...\n");
+        sys_led_loop();
     }
 }
 
