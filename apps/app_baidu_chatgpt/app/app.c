@@ -2,17 +2,21 @@
 #include "rtthread.h"
 #include "app.h"
 #include "wifi.h"
-
+#include "mqtt.h"
+#include "led.h"
 
 static void app_thread_entry(void *parameter)
 {
     wifi_ready_waiting();
 
     //network is ready now ...
+    smart_led_init(NULL);
+    
+    mqtt_bafa_init(NULL);
 
     while(1) {
         rt_thread_mdelay(1000);
-        rt_kprintf("tick ...\n");
+        //rt_kprintf("tick ...\n");
     }
 }
 

@@ -56,5 +56,7 @@ objs.extend(SConscript(os.path.join(libraries_path_prefix, IFX_library, 'SConscr
 # include drivers
 objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript')))
 
+Decider('MD5')
+
 # make a building
 DoBuilding(TARGET, objs)

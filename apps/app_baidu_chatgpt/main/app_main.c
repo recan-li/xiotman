@@ -14,14 +14,9 @@
 
 int app_main_entry(void *arg)
 {
-    rt_kprintf("\nHello baidu & ChatGPT !\n");
+    rt_kprintf("\nHello baidu & ChatGPT !\n\n");
 
     app_init();
     
-    while (1)
-    {
-        rt_thread_mdelay(1000);
-    }
-
     return 0;
 }

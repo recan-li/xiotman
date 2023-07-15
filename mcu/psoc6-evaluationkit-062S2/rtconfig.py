@@ -61,9 +61,9 @@ if PLATFORM == 'gcc':
     OBJCPY = PREFIX + 'objcopy'
 
     DEVICE = ' -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections'
-    CFLAGS = DEVICE + ' -Dgcc'
+    CFLAGS = DEVICE + ' -Dgcc -save-temps=obj'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb '
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -T board/linker_scripts/link.ld'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,Reset_Handler -T board/linker_scripts/link.ld'
 
     CPATH = ''
     LPATH = ''
