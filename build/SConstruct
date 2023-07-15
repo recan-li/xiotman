@@ -31,6 +31,7 @@ cur_is_verbose = False
 mul_thread_n = 16
 app_mcu_link_symbol_l = '('
 app_mcu_link_symbol_r = ')'
+debug_explain_enable = False
 
 # 定义选项
 AddOption("--test", action="store_true", dest="test",
@@ -162,6 +163,9 @@ def install_sys_env_value(key, value):
     #print(cmd)
     os.system(cmd)
 
+# please refer to https://gavv.net/articles/sconsign-bug/
+env.SConsignFile(cur_build_out_path + '.sconsign.dblite')
+
 #print(cur_path)
 os.environ['BUILD_OUT_DIR'] = cur_build_out_path
 os.environ['BSP_ROOT'] = cur_bsp_root
@@ -176,12 +180,18 @@ def my_scons_command1(target, source, env):
     os.system(cmd)
 
 def my_scons_command(target, source, env):
+    global cur_is_verbose
+    global debug_explain_enable
     os.chdir(cur_mcu_path)
     print('builging path : ' + os.getcwd())
     if cur_is_verbose:
         os.system('scons --verbose -j' + str(mul_thread_n))
     else:
-        os.system('scons -j' + str(mul_thread_n))
+        if debug_explain_enable:
+            debug_explain='--debug=explain'
+        else:
+            debug_explain=''
+        os.system('scons ' + debug_explain + ' -j' + str(mul_thread_n))
 
 Command('scons', None, my_scons_command)
 
@@ -288,6 +298,7 @@ def check_input_options():
         exit(0)
 
     if GetOption('verbose'):
+        global cur_is_verbose
         print("Running verbose")
         cur_is_verbose = True    
 
