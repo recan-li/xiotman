@@ -5,6 +5,7 @@ config APP_DIR
     option env="APP_ROOT"
     default "."
 
+
 config BSP_DIR
     string
     option env="BSP_ROOT"
