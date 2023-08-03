@@ -1,0 +1,25 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+src = []
+group = []
+CPPPATH = []
+
+if rtconfig.PLATFORM in ['iccarm']:
+    print("\nThe current project does not support IAR build\n")
+    Return('group')
+elif rtconfig.PLATFORM in ['gcc', 'armclang']:
+    if GetOption('target') != 'mdk5':
+        src += Glob('./fsp/src/bsp/mcu/all/*.c')
+        src += ['./fsp/src/bsp/cmsis/Device/RENESAS/Source/system.c']
+        src += ['./fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.c']
+        src += Glob('./fsp/src/r_*/*.c')
+        CPPPATH = [ './arm/CMSIS_5/CMSIS/Core/Include',
+                    './fsp/inc',
+                    './fsp/inc/api',
+                    './fsp/inc/instances',]
+
+group = DefineGroup('ra', src, depend = [''], CPPPATH = CPPPATH)
+Return('group')
