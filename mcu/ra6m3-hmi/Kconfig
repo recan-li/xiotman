@@ -1,5 +1,10 @@
 mainmenu "RT-Thread Configuration"
 
+config APP_DIR
+    string
+    option env="APP_ROOT"
+    default "."
+
 config BSP_DIR
     string
     option env="BSP_ROOT"
@@ -23,7 +28,17 @@ config ENV_DIR
     option env="ENV_ROOT"
     default "/"
 
+menu "APP Configuration"
+source "$APP_DIR/Kconfig"
+endmenu
+
+menu "RTOS Configuration"
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
-source "libraries/Kconfig"
+emdmenu
+
+menu "MCU Configuration"
+source "./libraries/Kconfig"
 source "$BSP_DIR/board/Kconfig"
+endmenu
+

@@ -1,6 +1,25 @@
 import os
 import sys
 
+# build out path
+if os.getenv('BUILD_OUT_DIR'):
+    BUILD_OUT_DIR = os.getenv('BUILD_OUT_DIR')
+else:
+    BUILD_OUT_DIR = ''
+
+
+# user app root path
+if os.getenv('APP_ROOT'):
+    USER_APP_DIR = os.getenv('APP_ROOT')
+else:
+    USER_APP_DIR = ''
+
+# packages src path
+if os.getenv('PKGS_SRC_ROOT'):
+    COMP_PACKAGES_DIR = os.getenv('PKGS_SRC_ROOT')
+else:
+    COMP_PACKAGES_DIR = 'packages'
+
 # toolchains options
 ARCH='arm'
 CPU='cortex-m4'
