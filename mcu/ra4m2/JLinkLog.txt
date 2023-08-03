@@ -1,0 +1,87 @@
+T3F54 000:026.208   SEGGER J-Link V7.22b Log File
+T3F54 000:026.776   DLL Compiled: Jun 17 2021 17:22:49
+T3F54 000:026.798   Logging started @ 2023-03-26 11:46
+T3F54 000:026.817 - 26.826ms
+T3F54 000:026.859 JLINK_SetWarnOutHandler(...)
+T3F54 000:026.883 - 0.033ms
+T3F54 000:026.908 JLINK_OpenEx(...)
+T3F54 000:030.639   Firmware: J-Link OB-STM32F072-CortexM compiled Jan  7 2019 14:09:37
+T3F54 000:031.304   Firmware: J-Link OB-STM32F072-CortexM compiled Jan  7 2019 14:09:37
+T3F54 000:032.107   Decompressing FW timestamp took 632 us
+T3F54 000:039.428   Hardware: V1.00
+T3F54 000:039.505   S/N: 4294967295
+T3F54 000:039.551   OEM: SEGGER
+T3F54 000:039.580   Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash, RDDI
+T3F54 000:042.055   TELNET listener socket opened on port 19021
+T3F54 000:042.416   WEBSRV Starting webserver
+T3F54 000:042.893   WEBSRV Webserver running on local port 19080
+T3F54 000:042.952 - 16.057ms returns "O.K."
+T3F54 000:043.019 JLINK_GetEmuCaps()
+T3F54 000:043.050 - 0.043ms returns 0xB8EA5A33
+T3F54 000:043.112 JLINK_TIF_GetAvailable(...)
+T3F54 000:043.505 - 0.422ms
+T3F54 000:043.571 JLINK_SetErrorOutHandler(...)
+T3F54 000:043.602 - 0.043ms
+T3F54 000:043.703 JLINK_ExecCommand("ProjectFile = "D:\llc\git_repos\rt-thread-share\rt-thread-share\rtt-5.0\rt-thread\bsp\renesas\ra4m2-eco\JLinkSettings.ini"", ...). 
+T3F54 000:080.678 - 37.003ms returns 0x00
+T3F54 000:091.054 JLINK_ExecCommand("Device = R7FA4M2AD", ...). 
+T3F54 000:102.525   Device "R7FA4M2AD" selected.
+T3F54 000:103.254 - 12.181ms returns 0x00
+T3F54 000:103.298 JLINK_GetHardwareVersion()
+T3F54 000:103.313 - 0.028ms returns 10000
+T3F54 000:103.339 JLINK_GetDLLVersion()
+T3F54 000:103.349 - 0.015ms returns 72202
+T3F54 000:103.362 JLINK_GetOEMString(...)
+T3F54 000:103.376 JLINK_GetFirmwareString(...)
+T3F54 000:103.395 - 0.024ms
+T3F54 000:122.990 JLINK_GetDLLVersion()
+T3F54 000:123.020 - 0.035ms returns 72202
+T3F54 000:123.034 JLINK_GetCompileDateTime()
+T3F54 000:123.044 - 0.014ms
+T3F54 000:131.824 JLINK_GetFirmwareString(...)
+T3F54 000:131.862 - 0.044ms
+T3F54 000:137.254 JLINK_GetHardwareVersion()
+T3F54 000:137.284 - 0.035ms returns 10000
+T3F54 000:141.979 JLINK_GetSN()
+T3F54 000:142.010 - 0.037ms returns -1
+T3F54 000:142.025 JLINK_GetOEMString(...)
+T3F54 000:153.760 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T3F54 000:155.984 - 2.239ms returns 0x00
+T3F54 000:156.012 JLINK_HasError()
+T3F54 000:156.051 JLINK_SetSpeed(5000)
+T3F54 000:156.490 - 0.450ms
+T3F54 000:156.514 JLINK_GetId()
+T3F54 000:167.101   ConfigTargetSettings() start
+T3F54 000:167.137    J-Link Script File: Executing ConfigTargetSettings()
+T3F54 000:172.365   ConfigTargetSettings() end
+T3F54 000:180.472   InitTarget() start
+T3F54 000:180.508    J-Link Script File: Executing InitTarget()
+T3F54 000:185.432   Determining TrustZone configuration...
+T3F54 000:195.966     Secure Debug: Enabled (SSD)
+T3F54 000:201.058   Determining currently configured transfer type by reading the AHB-AP CSW register.
+T3F54 000:215.776     --> Correct transfer type configured. Done.
+T3F54 000:221.151   InitTarget() end
+T3F54 000:228.991   Found SW-DP with ID 0x6BA02477
+T3F54 000:232.720   Old FW that does not support reading DPIDR via DAP jobs
+T3F54 000:246.191   DPv0 detected
+T3F54 000:250.921   Scanning AP map to find all available APs
+T3F54 000:262.140   AP[2]: Stopped AP scan as end of AP map has been reached
+T3F54 000:267.090   AP[0]: AHB-AP (IDR: 0x84770001)
+T3F54 000:274.489   AP[1]: APB-AP (IDR: 0x54770002)
+T3F54 000:279.180   Iterating through AP map to find AHB-AP to use
+T3F54 000:289.189   AP[0]: Core found
+T3F54 000:294.760   AP[0]: AHB-AP ROM base: 0xE00FE000
+T3F54 000:301.433   CPUID register: 0x410FD214. Implementer code: 0x41 (ARM)
+T3F54 000:308.931   Found Cortex-M33 r0p4, Little endian.
+T3F54 000:410.527   -- Max. mem block: 0x00002340
+T3F54 000:411.924   Looking for J-Link GUI Server exe at: d:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T3F54 000:412.504   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
+T3F54 000:715.325   Failed to connect to J-Link GUI Server.
+T3F54 004:474.803   
+  ***** Error: 
+T3F54 004:474.850   Specific core setup failed.
+T3F54 004:474.870 - 4318.362ms returns 0x00000000
+T3F54 006:394.592 JLINK_Close()
+T3F54 006:417.232 - 22.668ms
+T3F54 006:417.270   
+T3F54 006:417.284   Closed

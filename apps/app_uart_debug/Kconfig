@@ -1,0 +1,9 @@
+
+config APP_DIR
+    string
+    option env="APP_ROOT"
+    default "."
+
+config APP_DEBUG
+    bool "Debug Enable"
+    default n
