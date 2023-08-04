@@ -1,0 +1,45 @@
+mainmenu "RT-Thread Configuration"
+
+config APP_DIR
+    string
+    option env="APP_ROOT"
+    default "."
+
+
+config BSP_DIR
+    string
+    option env="BSP_ROOT"
+    default "."
+
+config RTT_DIR
+    string
+    option env="RTT_ROOT"
+    default "rt-thread"
+
+# you can change the RTT_ROOT default "rt-thread"
+# example : default "F:/git_repositories/rt-thread"
+
+config PKGS_DIR
+    string
+    option env="PKGS_ROOT"
+    default "packages"
+
+config ENV_DIR
+    string
+    option env="ENV_ROOT"
+    default "/"
+
+menu "APP Configuration"
+source "$APP_DIR/Kconfig"
+endmenu
+
+menu "RTOS Configuration"
+source "$RTT_DIR/Kconfig"
+source "$PKGS_DIR/Kconfig"
+emdmenu
+
+menu "MCU Configuration"
+source "./libraries/Kconfig"
+source "$BSP_DIR/board/Kconfig"
+endmenu
+
