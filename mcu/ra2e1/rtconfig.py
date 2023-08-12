@@ -23,7 +23,6 @@ else:
 ARCH='arm'
 CPU='cortex-m23'
 CROSS_TOOL='gcc'
-USED_ENV_ARM_GCC=False
 
 if os.getenv('RTT_CC'):
     CROSS_TOOL = os.getenv('RTT_CC')
@@ -42,8 +41,7 @@ elif CROSS_TOOL == 'iar':
     PLATFORM = 'iccarm'
     EXEC_PATH   = 'C:/Program Files/IAR Systems/Embedded Workbench 8.0'
 
-# maybe it's got from ENV envrionment
-if USED_ENV_ARM_GCC and os.getenv('RTT_EXEC_PATH'):
+if os.getenv('RTT_EXEC_PATH'):
     EXEC_PATH = os.getenv('RTT_EXEC_PATH')
 
 BUILD = 'debug'
