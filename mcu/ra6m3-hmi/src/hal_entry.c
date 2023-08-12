@@ -14,6 +14,17 @@
 
 #define LED_PIN    BSP_IO_PORT_02_PIN_09 /* Onboard LED pins */
 
+extern int app_main_entry(void *arg);
+
+#if 1
+
+void hal_entry(void)
+{
+    app_main_entry(NULL);
+}
+
+#else
+
 void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
@@ -26,3 +37,5 @@ void hal_entry(void)
         rt_thread_mdelay(500);
     }
 }
+
+#endif

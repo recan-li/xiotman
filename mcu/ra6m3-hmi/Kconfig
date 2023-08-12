@@ -5,7 +5,6 @@ config APP_DIR
     option env="APP_ROOT"
     default "."
 
-
 config BSP_DIR
     string
     option env="BSP_ROOT"
@@ -14,7 +13,7 @@ config BSP_DIR
 config RTT_DIR
     string
     option env="RTT_ROOT"
-    default "rt-thread"
+    default "../../rtos/rt-thread/5.0.x"
 
 # you can change the RTT_ROOT default "rt-thread"
 # example : default "F:/git_repositories/rt-thread"
@@ -36,7 +35,7 @@ endmenu
 menu "RTOS Configuration"
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
-emdmenu
+endmenu
 
 menu "MCU Configuration"
 source "./libraries/Kconfig"
