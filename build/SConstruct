@@ -40,6 +40,8 @@ AddOption("--list_app", action="store_true", dest="list_app",
               default=False, help="Run list_app")
 AddOption("--menuconfig", action="store", dest="menuconfig",
               default=None, help="Run menuconfig")
+AddOption("--buildlib", action="store", dest="buildlib",
+              default=None, help="Run buildlib")
 AddOption("--verbose", action="store_true", dest="verbose",
               default=None, help="Run verbose")
 
@@ -179,19 +181,23 @@ def my_scons_command1(target, source, env):
     cmd = ' scons --verbose -f ' + sconstruct_file
     os.system(cmd)
 
-def my_scons_command(target, source, env):
+def my_scons_command_single(sub_cmd):
     global cur_is_verbose
     global debug_explain_enable
     os.chdir(cur_mcu_path)
     print('builging path : ' + os.getcwd())
+    print('sub_cmd: ' + sub_cmd)
     if cur_is_verbose:
-        os.system('scons --verbose -j' + str(mul_thread_n))
+        os.system('scons ' + sub_cmd + ' --verbose -j' + str(mul_thread_n))
     else:
         if debug_explain_enable:
             debug_explain='--debug=explain'
         else:
             debug_explain=''
-        os.system('scons ' + debug_explain + ' -j' + str(mul_thread_n))
+        os.system('scons ' + sub_cmd + ' ' + debug_explain + ' -j' + str(mul_thread_n))
+
+def my_scons_command(target, source, env):
+    my_scons_command_single('')
 
 Command('scons', None, my_scons_command)
 
@@ -301,6 +307,12 @@ def check_input_options():
         global cur_is_verbose
         print("Running verbose")
         cur_is_verbose = True    
+
+    if GetOption('buildlib'):
+        print("Running buildlib")
+        lib_name = GetOption('buildlib')
+        my_scons_command_single('--buildlib=' + lib_name)
+        exit(0)
 
     if GetOption('menuconfig'):  
         value = GetOption('menuconfig')

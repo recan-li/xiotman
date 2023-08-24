@@ -35,6 +35,7 @@ import platform
 from SCons.Script import *
 from utils import _make_path_relative
 from mkdist import do_copy_file
+from mkdist import do_copy_files
 from options import AddOptions
 
 
@@ -753,9 +754,15 @@ def BuildLibInstallAction(target, source, env):
     for Group in Projects:
         if Group['name'] == lib_name:
             lib_name = GroupLibFullName(Group['name'], env)
-            dst_name = os.path.join(Group['path'], lib_name)
-            print('Copy '+lib_name+' => ' + dst_name)
+            if os.getenv('BUILD_OUT_DIR'):
+                lib_out_dir = os.getenv('BUILD_OUT_DIR') + '/lib/'
+                dst_name = lib_out_dir + lib_name
+                do_copy_files('.h', Group['path'], lib_out_dir)
+            else:
+                dst_name = os.path.join(Group['path'], lib_name)
+            print('Copy '+lib_name+' => ' + dst_name)            
             do_copy_file(lib_name, dst_name)
+            os.remove(lib_name)
             break
 
 def DoBuilding(target, objects):

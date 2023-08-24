@@ -37,6 +37,15 @@ if os.getenv('APP_ROOT'):
 else:
     USER_APP_DIR = ''
 
+# import user app config
+user_app_config = USER_APP_DIR + '/app_config.py'
+print(user_app_config)
+if os.path.exists(user_app_config):
+    import sys
+    sys.path.append(USER_APP_DIR)
+    from app_config import APP_CFLAGS
+    from app_config import APP_LFLAGS
+
 # packages src path
 if os.getenv('PKGS_SRC_ROOT'):
     COMP_PACKAGES_DIR = os.getenv('PKGS_SRC_ROOT')
@@ -67,7 +76,7 @@ if PLATFORM == 'gcc':
     STRIP   = PREFIX + 'strip'
     CFPFLAGS = ' -msoft-float'
     AFPFLAGS = ' -mfloat-abi=softfp -mfpu=neon'
-    DEVICE   = ' -march=armv7-a -mtune=cortex-a7 -ftree-vectorize -ffast-math -funwind-tables -fno-strict-aliasing'
+    DEVICE   = ' -save-temps=obj -march=armv7-a -mtune=cortex-a7 -ftree-vectorize -ffast-math -funwind-tables -fno-strict-aliasing'
 
     CXXFLAGS= DEVICE + CFPFLAGS + ' -Wall -fdiagnostics-color=always'
     CFLAGS  = DEVICE + CFPFLAGS + ' -Wall -Wno-cpp -std=gnu99 -D_POSIX_SOURCE -fdiagnostics-color=always'
@@ -75,6 +84,10 @@ if PLATFORM == 'gcc':
     LFLAGS  = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,system_vectors -T '+ LINK_SCRIPT + ' -lsupc++ -lgcc -static'
     CPATH   = ''
     LPATH   = ''
+
+    # add static library for test
+    #LFLAGS += ' -Wl,--whole-archive ' + BUILD_OUT_DIR + '/lib/libtest_gcc.a -Wl,--no-whole-archive'
+    LFLAGS += APP_LFLAGS
 
     if BUILD == 'debug':
         CFLAGS   += ' -O0 -gdwarf-2'

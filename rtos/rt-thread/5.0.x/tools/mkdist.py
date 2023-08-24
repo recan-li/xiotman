@@ -38,6 +38,25 @@ def do_copy_file(src, dst):
 
     shutil.copy2(src, dst)
 
+def do_copy_files(file_suffix, src_dir, dst_dir):
+    # check source file
+    if not os.path.exists(src_dir):
+        return
+
+    path = os.path.dirname(dst_dir)
+    # mkdir if path not exist
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    # do copy files
+    for root, dirs, files in os.walk(src_dir):
+        for file in files:
+            if file.endswith(file_suffix):
+                source = os.path.join(root, file)
+                destination = os.path.join(dst_dir, file)
+                shutil.copy(source, destination)
+                print("Copy " + file + ' => ' + destination)
+
 def do_copy_folder(src_dir, dst_dir, ignore=None):
     import shutil
     # check source directory
