@@ -39,12 +39,14 @@ else:
 
 # import user app config
 user_app_config = USER_APP_DIR + '/app_config.py'
-print(user_app_config)
 if os.path.exists(user_app_config):
     import sys
     sys.path.append(USER_APP_DIR)
     from app_config import APP_CFLAGS
     from app_config import APP_LFLAGS
+else:
+    APP_CFLAGS = ''
+    APP_LFLAGS = ''
 
 # packages src path
 if os.getenv('PKGS_SRC_ROOT'):
