@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include "at_device.h"
+#include "file_ini.h"
 
 #define DBG_TAG "wifi"
 #define DBG_LVL DBG_LOG
@@ -91,9 +92,47 @@ int wifi_init(void *arg)
     return RT_EOK;
 }
 
+int wifi_password_exist_checking(void)
+{
+    char ssid[32] = {0};
+    char password[32] = {0};
+
+    while(1) {
+
+        if (!ini_load_wifi_ap_info(ssid, password)) {
+            rt_kprintf("got ssid(%s) password(%s) ok !\n", ssid, password);
+            break;
+        }
+
+        rt_kprintf("can't find ssid & password ...\n");
+        rt_thread_mdelay(5000);
+    }
+
+    return 0;
+}
+
 int wifi_ready_waiting(void)
 {
     rt_sem_take(g_wifi_sem, RT_WAITING_FOREVER); // wait for wifi-sem
 
     return 0;
 }
+
+static void wifi_cmd(int argc, char**argv)
+{
+    if (argc == 4 && !strcmp(argv[1], "save")) {
+        char *ssid = argv[2];
+        char *password = argv[3];
+
+        ini_save_wifi_ap_info(ssid, password);
+        rt_kprintf("save ssid(%s) password(%s) ok, please reboot your device !\n", ssid, password);
+    } else if (argc == 2 && !strcmp(argv[1], "load")) {
+        char ssid[32] = {0};
+        char password[32] = {0};
+
+        ini_load_wifi_ap_info(ssid, password);
+        rt_kprintf("load ssid(%s) password(%s) ok !\n", ssid, password);
+    }
+}
+
+MSH_CMD_EXPORT(wifi_cmd, wifi_cmd sample: wifi_cmd save/load ssid password);

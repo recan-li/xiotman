@@ -6,6 +6,7 @@
 extern "C"{
 #endif
 
+extern int wifi_password_exist_checking(void);
 extern int wifi_init(void *arg);
 extern int wifi_ready_waiting(void);
 

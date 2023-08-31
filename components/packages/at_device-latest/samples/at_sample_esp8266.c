@@ -25,9 +25,18 @@ static struct at_device_esp8266 esp0 =
     ESP8266_SAMPLE_RECV_BUFF_LEN,
 };
 
+static char g_wifi_ssid[32] = {0};
+static char g_wifi_password[32] = {0};
+
 static int esp8266_device_register(void)
 {
     struct at_device_esp8266 *esp8266 = &esp0;
+
+    extern int ini_load_wifi_ap_info(char *ssid, char *password);
+    if (!ini_load_wifi_ap_info(g_wifi_ssid, g_wifi_password)) {
+      esp8266->wifi_ssid = g_wifi_ssid;
+      esp8266->wifi_password = g_wifi_password;
+    }
 
     return at_device_register(&(esp8266->device),
                               esp8266->device_name,

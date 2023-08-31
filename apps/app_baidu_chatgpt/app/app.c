@@ -30,6 +30,8 @@ int app_init(void)
 {
 	int ret = 0;
 
+    wifi_password_exist_checking();
+
     wifi_init(NULL);
 
 	/* 创建 serial 线程 */

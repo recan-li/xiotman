@@ -10,7 +10,7 @@
 #define DBG_LVL DBG_LOG
 #include <rtdbg.h>
 
-#define SMART_LED_PIN   CFG_LED_PIN
+#define SMART_LED_PIN   CFG_SMART_LED_PIN
 #define SMART_LED_ON    CFG_LED_ON
 #define SMART_LED_OFF   CFG_LED_OFF
 
