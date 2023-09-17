@@ -130,6 +130,7 @@ int G2D_Test_Draw_Circle()
 MSH_CMD_EXPORT(G2D_Test_Draw_Circle, G2D_Draw_Circle);
 
 #ifdef PKG_USING_LVGL
+#if 0
 void lv_port_gpu_blit(int32_t      x,
                       int32_t      y,
                       const void  *p,
@@ -165,6 +166,7 @@ void lv_port_gpu_blit(int32_t      x,
     // In single-buffered mode always wait for DRW to finish before returning
     d2_flushframe(_d2_handle);
 }
+#endif
 #endif
 
 void _LCD_FillRect(int32_t x0, int32_t y0, int32_t x1, int32_t y1, uint32_t color)

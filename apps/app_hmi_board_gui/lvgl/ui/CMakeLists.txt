@@ -1,0 +1,16 @@
+SET(SOURCES screens/ui_welcomescreen.c
+    screens/ui_mainscreen.c
+    screens/ui_xitongshezhi.c
+    screens/ui_quweidonghua.c
+    screens/ui_zhinengai.c
+    screens/ui_yuwenbaozang.c
+    screens/ui_shuxueyunsuan.c
+    screens/ui_yingyuqimeng.c
+    ui.c
+    components/ui_comp_hook.c
+    ui_helpers.c
+    images/ui_img_fengmian_png.c
+    images/ui_img_bg_img_png.c
+    fonts/ui_font_chnfont.c)
+
+add_library(ui ${SOURCES})

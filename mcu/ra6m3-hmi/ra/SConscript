@@ -12,11 +12,11 @@ if rtconfig.PLATFORM in ['iccarm']:
     Return('group')
 elif rtconfig.PLATFORM in ['gcc', 'armclang']:
     if GetOption('target') != 'mdk5':
-        src += Glob(cwd + '/fsp/src/bsp/mcu/all/*.c')
-        src += [cwd + '/fsp/src/bsp/cmsis/Device/RENESAS/Source/system.c']
-        src += [cwd + '/fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.c']
-        src += Glob(cwd + '/fsp/src/r_*/*.c')
-        src += Glob(cwd + '/tes/dave2d/src/*.c')
+        src += Glob('./fsp/src/bsp/mcu/all/*.c')
+        src += ['./fsp/src/bsp/cmsis/Device/RENESAS/Source/system.c']
+        src += ['./fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.c']
+        src += Glob('./fsp/src/r_*/*.c')
+        src += Glob('./tes/dave2d/src/*.c')
         CPPPATH = [ cwd + '/arm/CMSIS_5/CMSIS/Core/Include',
                     cwd + '/fsp/inc',
                     cwd + '/fsp/inc/api',

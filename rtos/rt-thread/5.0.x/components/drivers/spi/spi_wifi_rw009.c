@@ -9,7 +9,7 @@
  * 2014-09-18     aozima       update command & response.
  * 2017-07-28     armink       fix auto reconnect feature
  */
-
+#if 0
 #include <rtthread.h>
 #include <drivers/spi.h>
 
@@ -850,3 +850,4 @@ FINSH_FUNCTION_EXPORT(rw009_join, RW009 join to AP.);
 FINSH_FUNCTION_EXPORT(rw009_rssi, get RW009 current AP rssi.);
 
 #endif // RT_USING_FINSH
+#endif

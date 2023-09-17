@@ -40,6 +40,8 @@ AddOption("--list_app", action="store_true", dest="list_app",
               default=False, help="Run list_app")
 AddOption("--menuconfig", action="store", dest="menuconfig",
               default=None, help="Run menuconfig")
+AddOption("--target", action="store", dest="target",
+              default=None, help="Run target")
 AddOption("--buildlib", action="store", dest="buildlib",
               default=None, help="Run buildlib")
 AddOption("--verbose", action="store_true", dest="verbose",
@@ -312,6 +314,12 @@ def check_input_options():
         print("Running buildlib")
         lib_name = GetOption('buildlib')
         my_scons_command_single('--buildlib=' + lib_name)
+        exit(0)
+
+    if GetOption('target'):
+        print("Running target")
+        target_name = GetOption('target')
+        my_scons_command_single('--target=' + target_name)
         exit(0)
 
     if GetOption('menuconfig'):  

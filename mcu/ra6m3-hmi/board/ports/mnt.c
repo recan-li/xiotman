@@ -16,26 +16,30 @@
 #define SD_CHECK_PIN  "p405"
 
 static rt_base_t sd_check_pin = 0;
+static rt_base_t g_sd_ready_flag = 0;
 
 static void _sdcard_mount(void)
 {
     rt_device_t device;
 
     device = rt_device_find("sd");
-    rt_kprintf("rt_device_find %x \r\n", device);
+    rt_kprintf("1 rt_device_find %x \r\n", device);
     if (device == NULL)
     {
         mmcsd_wait_cd_changed(0);
         sdcard_change();
         mmcsd_wait_cd_changed(RT_WAITING_FOREVER);
         device = rt_device_find("sd");
+        rt_kprintf("2 rt_device_find %x \r\n", device);
+        rt_thread_mdelay(1000);
     }
 
     if (device != RT_NULL)
     {
         if (dfs_mount("sd", "/", "elm", 0, 0) == RT_EOK)
         {
-            LOG_I("sd card mount to '/'");
+            LOG_I("sd card mount to '/' ok");
+            g_sd_ready_flag = 1;
         }
         else
         {
@@ -49,6 +53,7 @@ static void _sdcard_unmount(void)
     rt_thread_mdelay(200);
     dfs_unmount("/sdcard");
     LOG_I("Unmount \"/sdcard\"");
+    g_sd_ready_flag = 0;
 
     mmcsd_wait_cd_changed(0);
     sdcard_change();
@@ -120,6 +125,11 @@ int sd_mount(void)
     return 0;
 }
 #endif /* BSP_USING_SDCARD_FS */
+
+int sdcard_is_ready(void)
+{
+    return g_sd_ready_flag;
+}
 
 int mount_init(void)
 {

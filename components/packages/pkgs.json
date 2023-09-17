@@ -13,5 +13,25 @@
   "path": "/packages/language/JSON/cJSON", 
   "ver": "latest", 
   "name": "CJSON"
+ },
+ {
+  "path": "/packages/iot/WiFi/rw007", 
+  "ver": "v2.1.0", 
+  "name": "RW007"
+ }, 
+ {
+  "path": "/packages/multimedia/LVGL/LVGL", 
+  "ver": "v8.3.9", 
+  "name": "LVGL"
+ }, 
+ {
+  "path": "/packages/multimedia/LVGL/lv_music_demo", 
+  "ver": "v0.3.3", 
+  "name": "LV_MUSIC_DEMO"
+ }, 
+ {
+  "path": "/packages/multimedia/LVGL/gui_guider_demo", 
+  "ver": "latest", 
+  "name": "GUI_GUIDER_DEMO"
  }
 ]

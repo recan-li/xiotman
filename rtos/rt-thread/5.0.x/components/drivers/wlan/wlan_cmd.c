@@ -305,10 +305,23 @@ static rt_err_t wifi_scan_result_cache(struct rt_wlan_info *info)
     return err;
 }
 
-
+static int g_ssid_num = 0;
+static char *g_ssid_list = RT_NULL;
 
 static void wifi_scan_result_clean(void)
 {
+    if (g_ssid_list) {
+        int i;
+         rt_kprintf("scan num:%d\n", scan_result.num);
+        for (i = 0; i < scan_result.num; i++)
+        {
+            rt_kprintf("ssid:%s\n", scan_result.info[i].ssid.val);
+            strcat((char *)g_ssid_list, (char *)scan_result.info[i].ssid.val);
+            strcat(g_ssid_list, "\n");
+        }
+        g_ssid_num = scan_result.num;
+        g_ssid_list = RT_NULL;
+    }
 
     /* If there is data */
     if (scan_result.num)
@@ -442,7 +455,6 @@ static int wifi_scan(int argc, char *argv[])
         scan_filter = info;
     }
 
-
     /*Todo: what can i do for it return val */
     ret = rt_wlan_scan_with_info(info);
     if(ret != RT_EOK)
@@ -457,6 +469,13 @@ static int wifi_scan(int argc, char *argv[])
         scan_filter = RT_NULL;
     }
     return 0;
+}
+
+int wifi_scan_for_ssid_list(char *ssid_list)
+{
+    g_ssid_list = ssid_list;
+    wifi_scan(1, RT_NULL);
+    return g_ssid_num;
 }
 
 static int wifi_join(int argc, char *argv[])

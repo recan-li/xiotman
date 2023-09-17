@@ -1,0 +1,12 @@
+# RT-Thread building script for bridge
+
+import os
+from building import *
+import rtconfig
+
+objs = []
+#cwd  = GetCurrentDir()
+
+objs = objs + SConscript('./env_support/rt-thread/SConscript')
+
+Return('objs')

@@ -262,7 +262,7 @@ menu "Hardware Drivers Config"
                 if BSP_USING_LVGL_DEMO     
                     choice
                         prompt "choice lvgl demo"
-                        default BSP_USING_LVGL_MUSIC_DEMO
+                        default BSP_USING_LVGL_USER_DEMO
 
                         config BSP_USING_LVGL_MUSIC_DEMO
                             bool "Enable LVGL music demo"
@@ -275,9 +275,11 @@ menu "Hardware Drivers Config"
                             select BSP_USING_FS
                             select BSP_USING_SDCARD_FS
                             default n
+
+                        config BSP_USING_LVGL_USER_DEMO
+                            bool "Enable LVGL user demo"
                     endchoice
                 endif
-
     endmenu
 
     menu "Board extended module Drivers"

@@ -81,6 +81,27 @@ PatchedPreProcessor = SCons.cpp.PreProcessor
 PatchedPreProcessor.start_handling_includes = start_handling_includes
 PatchedPreProcessor.stop_handling_includes = stop_handling_includes
 
+def gcc_long_cmd_line_excute(cmd, cmdline, _e, old_path):
+    import subprocess
+
+    cwd = os.getcwd()
+    cmdline_left = cmdline.replace(cmd, '').replace('/', "\\\\").replace('\\', "\\\\")
+    tmp_gcc_cmd_file = 'tmp_gcc.cmd'
+    with open(tmp_gcc_cmd_file, 'w') as file:
+        file.write(cmdline_left)
+    new_cmd_line = cmd + ' @' + tmp_gcc_cmd_file
+    try:
+        #print(new_cmd_line)
+        proc = subprocess.Popen(new_cmd_line, env=_e, shell=False)
+    except Exception as e:
+        print('Error in calling command:' + cmdline.split(' ')[0])
+        print('Exception: ' + os.strerror(e.errno))
+        return e.errno
+    finally:
+        os.environ['PATH'] = old_path
+
+    return proc.wait()
+
 class Win32Spawn:
     def spawn(self, sh, escape, cmd, args, env):
         # deal with the cmd build-in commands which cannot be used in
@@ -115,6 +136,10 @@ class Win32Spawn:
             print('Exception: ' + os.strerror(e.errno))
             if (os.strerror(e.errno) == "No such file or directory"):
                 print ("\nPlease check Toolchains PATH setting.\n")
+
+            if (os.strerror(e.errno) == "Invalid argument"):
+                print('fix long cmd line excute ...')
+                return gcc_long_cmd_line_excute(cmd, cmdline, _e, old_path)
 
             return e.errno
         finally:

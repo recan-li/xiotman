@@ -15,7 +15,7 @@ sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
 try:
     from building import *
 except:
-    print('Cannot found RT-Thread root directory, please check RTT_ROOT')
+    print('Cannot found RT-Thread root directory, please check RTT_ROOT222')
     print(RTT_ROOT)
     exit(-1)
 
@@ -52,8 +52,10 @@ rtconfig.BSP_LIBRARY_TYPE = None
 objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
 
 # include drivers
+print(rtconfig.BUILD_OUT_DIR)
 objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript'), 
         variant_dir=rtconfig.BUILD_OUT_DIR + 'libraries/HAL_Drivers', duplicate=0))
+#objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript')))
 
 # make a building
 DoBuilding(TARGET, objs)

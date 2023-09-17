@@ -6,7 +6,7 @@ if os.getenv('BUILD_OUT_DIR'):
     BUILD_OUT_DIR = os.getenv('BUILD_OUT_DIR')
 else:
     BUILD_OUT_DIR = ''
-
+print(BUILD_OUT_DIR)
 
 # user app root path
 if os.getenv('APP_ROOT'):
@@ -29,6 +29,8 @@ if os.getenv('RTT_CC'):
     CROSS_TOOL = os.getenv('RTT_CC')
 if os.getenv('RTT_ROOT'):
     RTT_ROOT = os.getenv('RTT_ROOT')
+
+cwd = os.getcwd()
 
 # cross_tool provides the cross compiler
 # EXEC_PATH is the compiler execute path, for example, CodeSourcery, Keil MDK, IAR
@@ -65,13 +67,13 @@ if PLATFORM == 'gcc':
     DEVICE = ' -mcpu=cortex-m4 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections'
     CFLAGS = DEVICE + ' -Dgcc'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb '
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,Reset_Handler -T script/fsp.ld -L script/'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=' + BUILD_OUT_DIR + 'rtthread.map,-cref,-u,Reset_Handler -T ' + cwd + '/script/fsp.ld -L ' + cwd + '/script/'
 
     CPATH = ''
     LPATH = ''
 
     if BUILD == 'debug':
-        CFLAGS += ' -O0 -gdwarf-2 -g -Wall'
+        CFLAGS += ' -Os -gdwarf-2 -Wall'
         AFLAGS += ' -gdwarf-2'
     else:
         CFLAGS += ' -Os'
