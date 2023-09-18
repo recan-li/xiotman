@@ -21,8 +21,8 @@ lv_obj_clear_flag( ui_Bg6, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_LabelTitle6 = lv_label_create(ui_yingyuqimeng);
 lv_obj_set_width( ui_LabelTitle6, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTitle6, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelTitle6, -1 );
-lv_obj_set_y( ui_LabelTitle6, -89 );
+lv_obj_set_x( ui_LabelTitle6, 60 );
+lv_obj_set_y( ui_LabelTitle6, -110 );
 lv_obj_set_align( ui_LabelTitle6, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelTitle6,"英语启蒙");
 lv_obj_set_style_text_color(ui_LabelTitle6, lv_color_hex(0x14FF2D), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -34,17 +34,15 @@ ui_Btnrenshizimu = lv_btn_create(ui_yingyuqimeng);
 lv_obj_set_width( ui_Btnrenshizimu, 100);
 lv_obj_set_height( ui_Btnrenshizimu, 50);
 lv_obj_set_x( ui_Btnrenshizimu, -170 );
-lv_obj_set_y( ui_Btnrenshizimu, -41 );
+lv_obj_set_y( ui_Btnrenshizimu, -50 );
 lv_obj_set_align( ui_Btnrenshizimu, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnrenshizimu, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnrenshizimu, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnrenshizimu, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_text_font(ui_Btnrenshizimu, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Label22 = lv_label_create(ui_Btnrenshizimu);
 lv_obj_set_width( ui_Label22, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label22, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label22, -1 );
-lv_obj_set_y( ui_Label22, -1 );
 lv_obj_set_align( ui_Label22, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label22,"认识字母");
 
@@ -52,16 +50,14 @@ ui_Btnquweidanci = lv_btn_create(ui_yingyuqimeng);
 lv_obj_set_width( ui_Btnquweidanci, 100);
 lv_obj_set_height( ui_Btnquweidanci, 50);
 lv_obj_set_x( ui_Btnquweidanci, -170 );
-lv_obj_set_y( ui_Btnquweidanci, 29 );
+lv_obj_set_y( ui_Btnquweidanci, 25 );
 lv_obj_set_align( ui_Btnquweidanci, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnquweidanci, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnquweidanci, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnquweidanci, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 ui_Label23 = lv_label_create(ui_Btnquweidanci);
 lv_obj_set_width( ui_Label23, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label23, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label23, -1 );
-lv_obj_set_y( ui_Label23, -1 );
 lv_obj_set_align( ui_Label23, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label23,"趣味单词");
 lv_obj_set_style_text_font(ui_Label23, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -70,7 +66,7 @@ ui_Btnfanhuizhuye5 = lv_btn_create(ui_yingyuqimeng);
 lv_obj_set_width( ui_Btnfanhuizhuye5, 100);
 lv_obj_set_height( ui_Btnfanhuizhuye5, 50);
 lv_obj_set_x( ui_Btnfanhuizhuye5, -170 );
-lv_obj_set_y( ui_Btnfanhuizhuye5, 99 );
+lv_obj_set_y( ui_Btnfanhuizhuye5, 100 );
 lv_obj_set_align( ui_Btnfanhuizhuye5, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Btnfanhuizhuye5, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnfanhuizhuye5, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
@@ -78,23 +74,31 @@ lv_obj_clear_flag( ui_Btnfanhuizhuye5, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label24 = lv_label_create(ui_Btnfanhuizhuye5);
 lv_obj_set_width( ui_Label24, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label24, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label24, -1 );
-lv_obj_set_y( ui_Label24, -1 );
 lv_obj_set_align( ui_Label24, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label24,"返回主页");
 lv_obj_set_style_text_font(ui_Label24, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_TabViezhinengai3 = lv_tabview_create(ui_yingyuqimeng, LV_DIR_TOP, 50);
 lv_obj_set_width( ui_TabViezhinengai3, 300);
-lv_obj_set_height( ui_TabViezhinengai3, 180);
-lv_obj_set_x( ui_TabViezhinengai3, 64 );
-lv_obj_set_y( ui_TabViezhinengai3, 28 );
+lv_obj_set_height( ui_TabViezhinengai3, 200);
+lv_obj_set_x( ui_TabViezhinengai3, 60 );
+lv_obj_set_y( ui_TabViezhinengai3, 21 );
 lv_obj_set_align( ui_TabViezhinengai3, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_TabViezhinengai3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 
+ui_Imageyingyuqimeng = lv_img_create(ui_yingyuqimeng);
+lv_obj_set_width( ui_Imageyingyuqimeng, 300);
+lv_obj_set_height( ui_Imageyingyuqimeng, 200);
+lv_obj_set_x( ui_Imageyingyuqimeng, 60 );
+lv_obj_set_y( ui_Imageyingyuqimeng, 21 );
+lv_obj_set_align( ui_Imageyingyuqimeng, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_Imageyingyuqimeng, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_Imageyingyuqimeng, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
 lv_obj_add_event_cb(ui_Btnrenshizimu, ui_event_Btnrenshizimu, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Btnquweidanci, ui_event_Btnquweidanci, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Btnfanhuizhuye5, ui_event_Btnfanhuizhuye5, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_yingyuqimeng, ui_event_yingyuqimeng, LV_EVENT_ALL, NULL);
 
 }

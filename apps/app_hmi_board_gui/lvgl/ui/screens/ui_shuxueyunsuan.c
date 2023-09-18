@@ -21,8 +21,8 @@ lv_obj_clear_flag( ui_Bg5, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_LabelTitle5 = lv_label_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_LabelTitle5, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTitle5, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelTitle5, -1 );
-lv_obj_set_y( ui_LabelTitle5, -89 );
+lv_obj_set_x( ui_LabelTitle5, 60 );
+lv_obj_set_y( ui_LabelTitle5, -100 );
 lv_obj_set_align( ui_LabelTitle5, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelTitle5,"数学运算");
 lv_obj_set_style_text_color(ui_LabelTitle5, lv_color_hex(0x14FF2D), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -34,17 +34,15 @@ ui_Btnjiafayunsuan = lv_btn_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_Btnjiafayunsuan, 100);
 lv_obj_set_height( ui_Btnjiafayunsuan, 50);
 lv_obj_set_x( ui_Btnjiafayunsuan, -170 );
-lv_obj_set_y( ui_Btnjiafayunsuan, -41 );
+lv_obj_set_y( ui_Btnjiafayunsuan, -50 );
 lv_obj_set_align( ui_Btnjiafayunsuan, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnjiafayunsuan, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnjiafayunsuan, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnjiafayunsuan, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_text_font(ui_Btnjiafayunsuan, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Label19 = lv_label_create(ui_Btnjiafayunsuan);
 lv_obj_set_width( ui_Label19, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label19, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label19, -1 );
-lv_obj_set_y( ui_Label19, -1 );
 lv_obj_set_align( ui_Label19, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label19,"加法运算");
 
@@ -52,16 +50,14 @@ ui_Btnjianfayunsuan = lv_btn_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_Btnjianfayunsuan, 100);
 lv_obj_set_height( ui_Btnjianfayunsuan, 50);
 lv_obj_set_x( ui_Btnjianfayunsuan, -170 );
-lv_obj_set_y( ui_Btnjianfayunsuan, 29 );
+lv_obj_set_y( ui_Btnjianfayunsuan, 25 );
 lv_obj_set_align( ui_Btnjianfayunsuan, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnjianfayunsuan, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnjianfayunsuan, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnjianfayunsuan, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 ui_Label20 = lv_label_create(ui_Btnjianfayunsuan);
 lv_obj_set_width( ui_Label20, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label20, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label20, -1 );
-lv_obj_set_y( ui_Label20, -1 );
 lv_obj_set_align( ui_Label20, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label20,"减法运算");
 lv_obj_set_style_text_font(ui_Label20, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -70,7 +66,7 @@ ui_Btnfanhuizhuye4 = lv_btn_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_Btnfanhuizhuye4, 100);
 lv_obj_set_height( ui_Btnfanhuizhuye4, 50);
 lv_obj_set_x( ui_Btnfanhuizhuye4, -170 );
-lv_obj_set_y( ui_Btnfanhuizhuye4, 99 );
+lv_obj_set_y( ui_Btnfanhuizhuye4, 100 );
 lv_obj_set_align( ui_Btnfanhuizhuye4, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Btnfanhuizhuye4, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnfanhuizhuye4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
@@ -78,8 +74,6 @@ lv_obj_clear_flag( ui_Btnfanhuizhuye4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label21 = lv_label_create(ui_Btnfanhuizhuye4);
 lv_obj_set_width( ui_Label21, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label21, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label21, -1 );
-lv_obj_set_y( ui_Label21, -1 );
 lv_obj_set_align( ui_Label21, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label21,"返回主页");
 lv_obj_set_style_text_font(ui_Label21, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -97,7 +91,7 @@ ui_Btnchongxinchuti = lv_btn_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_Btnchongxinchuti, 100);
 lv_obj_set_height( ui_Btnchongxinchuti, 50);
 lv_obj_set_x( ui_Btnchongxinchuti, -10 );
-lv_obj_set_y( ui_Btnchongxinchuti, 99 );
+lv_obj_set_y( ui_Btnchongxinchuti, 100 );
 lv_obj_set_align( ui_Btnchongxinchuti, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Btnchongxinchuti, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnchongxinchuti, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
@@ -105,8 +99,6 @@ lv_obj_clear_flag( ui_Btnchongxinchuti, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label25 = lv_label_create(ui_Btnchongxinchuti);
 lv_obj_set_width( ui_Label25, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label25, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label25, -1 );
-lv_obj_set_y( ui_Label25, -1 );
 lv_obj_set_align( ui_Label25, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label25,"重新出题");
 lv_obj_set_style_text_font(ui_Label25, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -115,7 +107,7 @@ ui_Btnchakandaan = lv_btn_create(ui_shuxueyunsuan);
 lv_obj_set_width( ui_Btnchakandaan, 100);
 lv_obj_set_height( ui_Btnchakandaan, 50);
 lv_obj_set_x( ui_Btnchakandaan, 145 );
-lv_obj_set_y( ui_Btnchakandaan, 99 );
+lv_obj_set_y( ui_Btnchakandaan, 100 );
 lv_obj_set_align( ui_Btnchakandaan, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Btnchakandaan, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnchakandaan, LV_OBJ_FLAG_SCROLLABLE );    /// Flags

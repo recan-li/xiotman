@@ -21,8 +21,8 @@ lv_obj_clear_flag( ui_Bg4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_LabelTitle4 = lv_label_create(ui_yuwenbaozang);
 lv_obj_set_width( ui_LabelTitle4, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTitle4, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelTitle4, -1 );
-lv_obj_set_y( ui_LabelTitle4, -89 );
+lv_obj_set_x( ui_LabelTitle4, 60 );
+lv_obj_set_y( ui_LabelTitle4, -110 );
 lv_obj_set_align( ui_LabelTitle4, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelTitle4,"语文宝藏");
 lv_obj_set_style_text_color(ui_LabelTitle4, lv_color_hex(0x14FF2D), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -34,17 +34,15 @@ ui_Btnguoxuetangshi = lv_btn_create(ui_yuwenbaozang);
 lv_obj_set_width( ui_Btnguoxuetangshi, 100);
 lv_obj_set_height( ui_Btnguoxuetangshi, 50);
 lv_obj_set_x( ui_Btnguoxuetangshi, -170 );
-lv_obj_set_y( ui_Btnguoxuetangshi, -41 );
+lv_obj_set_y( ui_Btnguoxuetangshi, -50 );
 lv_obj_set_align( ui_Btnguoxuetangshi, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnguoxuetangshi, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnguoxuetangshi, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnguoxuetangshi, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_text_font(ui_Btnguoxuetangshi, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Label16 = lv_label_create(ui_Btnguoxuetangshi);
 lv_obj_set_width( ui_Label16, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label16, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label16, -1 );
-lv_obj_set_y( ui_Label16, -1 );
 lv_obj_set_align( ui_Label16, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label16,"国学唐诗");
 
@@ -52,16 +50,14 @@ ui_Btnsanzijing = lv_btn_create(ui_yuwenbaozang);
 lv_obj_set_width( ui_Btnsanzijing, 100);
 lv_obj_set_height( ui_Btnsanzijing, 50);
 lv_obj_set_x( ui_Btnsanzijing, -170 );
-lv_obj_set_y( ui_Btnsanzijing, 29 );
+lv_obj_set_y( ui_Btnsanzijing, 25 );
 lv_obj_set_align( ui_Btnsanzijing, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Btnsanzijing, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_add_flag( ui_Btnsanzijing, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnsanzijing, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 ui_Label17 = lv_label_create(ui_Btnsanzijing);
 lv_obj_set_width( ui_Label17, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label17, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label17, -1 );
-lv_obj_set_y( ui_Label17, -1 );
 lv_obj_set_align( ui_Label17, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label17,"三字经");
 lv_obj_set_style_text_font(ui_Label17, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -70,7 +66,7 @@ ui_Btnfanhuizhuye3 = lv_btn_create(ui_yuwenbaozang);
 lv_obj_set_width( ui_Btnfanhuizhuye3, 100);
 lv_obj_set_height( ui_Btnfanhuizhuye3, 50);
 lv_obj_set_x( ui_Btnfanhuizhuye3, -170 );
-lv_obj_set_y( ui_Btnfanhuizhuye3, 99 );
+lv_obj_set_y( ui_Btnfanhuizhuye3, 100 );
 lv_obj_set_align( ui_Btnfanhuizhuye3, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Btnfanhuizhuye3, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Btnfanhuizhuye3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
@@ -78,17 +74,24 @@ lv_obj_clear_flag( ui_Btnfanhuizhuye3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label18 = lv_label_create(ui_Btnfanhuizhuye3);
 lv_obj_set_width( ui_Label18, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label18, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label18, -1 );
-lv_obj_set_y( ui_Label18, -1 );
 lv_obj_set_align( ui_Label18, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label18,"返回主页");
 lv_obj_set_style_text_font(ui_Label18, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_TabViezhinengai1 = lv_tabview_create(ui_yuwenbaozang, LV_DIR_TOP, 50);
+lv_obj_set_width( ui_TabViezhinengai1, 300);
+lv_obj_set_height( ui_TabViezhinengai1, 200);
+lv_obj_set_x( ui_TabViezhinengai1, 60 );
+lv_obj_set_y( ui_TabViezhinengai1, 21 );
+lv_obj_set_align( ui_TabViezhinengai1, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_TabViezhinengai1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+
 ui_Imageyuwenbaozang = lv_img_create(ui_yuwenbaozang);
 lv_obj_set_width( ui_Imageyuwenbaozang, 300);
-lv_obj_set_height( ui_Imageyuwenbaozang, 180);
-lv_obj_set_x( ui_Imageyuwenbaozang, 64 );
-lv_obj_set_y( ui_Imageyuwenbaozang, 28 );
+lv_obj_set_height( ui_Imageyuwenbaozang, 200);
+lv_obj_set_x( ui_Imageyuwenbaozang, 60 );
+lv_obj_set_y( ui_Imageyuwenbaozang, 21 );
 lv_obj_set_align( ui_Imageyuwenbaozang, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Imageyuwenbaozang, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_Imageyuwenbaozang, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
@@ -96,6 +99,6 @@ lv_obj_clear_flag( ui_Imageyuwenbaozang, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_add_event_cb(ui_Btnguoxuetangshi, ui_event_Btnguoxuetangshi, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Btnsanzijing, ui_event_Btnsanzijing, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Btnfanhuizhuye3, ui_event_Btnfanhuizhuye3, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_Imageyuwenbaozang, ui_event_Imageyuwenbaozang, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_yuwenbaozang, ui_event_yuwenbaozang, LV_EVENT_ALL, NULL);
 
 }

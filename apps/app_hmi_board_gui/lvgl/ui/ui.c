@@ -71,6 +71,7 @@ lv_obj_t *ui_Switchpasswordmode;
 
 // SCREEN: ui_quweidonghua
 void ui_quweidonghua_screen_init(void);
+void ui_event_quweidonghua( lv_event_t * e);
 lv_obj_t *ui_quweidonghua;
 lv_obj_t *ui_Bg2;
 lv_obj_t *ui_LabelTitle2;
@@ -84,27 +85,31 @@ void ui_event_Btnfanhuizhuye1( lv_event_t * e);
 lv_obj_t *ui_Btnfanhuizhuye1;
 lv_obj_t *ui_Label12;
 lv_obj_t *ui_TabViewquweidonghua;
+lv_obj_t *ui_Imagequweidonghua;
 
 
 // SCREEN: ui_zhinengai
 void ui_zhinengai_screen_init(void);
+void ui_event_zhinengai( lv_event_t * e);
 lv_obj_t *ui_zhinengai;
 lv_obj_t *ui_Bg3;
 lv_obj_t *ui_LabelTitle3;
 void ui_event_Btntonghuagushi( lv_event_t * e);
 lv_obj_t *ui_Btntonghuagushi;
 lv_obj_t *ui_Label13;
-void ui_event_Btnzhishikepu( lv_event_t * e);
-lv_obj_t *ui_Btnzhishikepu;
+void ui_event_Btnzhishibaike( lv_event_t * e);
+lv_obj_t *ui_Btnzhishibaike;
 lv_obj_t *ui_Label14;
 void ui_event_Btnfanhuizhuye2( lv_event_t * e);
 lv_obj_t *ui_Btnfanhuizhuye2;
 lv_obj_t *ui_Label15;
 lv_obj_t *ui_TabViezhinengai;
+lv_obj_t *ui_Imagezhinengai;
 
 
 // SCREEN: ui_yuwenbaozang
 void ui_yuwenbaozang_screen_init(void);
+void ui_event_yuwenbaozang( lv_event_t * e);
 lv_obj_t *ui_yuwenbaozang;
 lv_obj_t *ui_Bg4;
 lv_obj_t *ui_LabelTitle4;
@@ -117,7 +122,7 @@ lv_obj_t *ui_Label17;
 void ui_event_Btnfanhuizhuye3( lv_event_t * e);
 lv_obj_t *ui_Btnfanhuizhuye3;
 lv_obj_t *ui_Label18;
-void ui_event_Imageyuwenbaozang( lv_event_t * e);
+lv_obj_t *ui_TabViezhinengai1;
 lv_obj_t *ui_Imageyuwenbaozang;
 
 
@@ -150,6 +155,7 @@ lv_obj_t *ui_Dropdownmaxnum;
 
 // SCREEN: ui_yingyuqimeng
 void ui_yingyuqimeng_screen_init(void);
+void ui_event_yingyuqimeng( lv_event_t * e);
 lv_obj_t *ui_yingyuqimeng;
 lv_obj_t *ui_Bg6;
 lv_obj_t *ui_LabelTitle6;
@@ -163,6 +169,7 @@ void ui_event_Btnfanhuizhuye5( lv_event_t * e);
 lv_obj_t *ui_Btnfanhuizhuye5;
 lv_obj_t *ui_Label24;
 lv_obj_t *ui_TabViezhinengai3;
+lv_obj_t *ui_Imageyingyuqimeng;
 lv_obj_t *ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -269,6 +276,17 @@ if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_
       switchpasswordmode_event_handler( e );
 }
 }
+void ui_event_quweidonghua( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenquweidonghualeft_event_handler( e );
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenquweidonghuaright_event_handler( e );
+}
+}
 void ui_event_Btnchangchangyingyu( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
@@ -287,22 +305,44 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_mainscreen_screen_init);
 }
 }
+void ui_event_zhinengai( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenzhinengaileft_event_handler( e );
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenzhinengairight_event_handler( e );
+}
+}
 void ui_event_Btntonghuagushi( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       Btntonghuagushi_event_handler( e );
 }
 }
-void ui_event_Btnzhishikepu( lv_event_t * e) {
+void ui_event_Btnzhishibaike( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
-      Btnzhishikepu_event_handler( e );
+      Btnzhishibaike_event_handler( e );
 }
 }
 void ui_event_Btnfanhuizhuye2( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_mainscreen_screen_init);
+}
+}
+void ui_event_yuwenbaozang( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenyuwenbaozangleft_event_handler( e );
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenyuwenbaozangright_event_handler( e );
 }
 }
 void ui_event_Btnguoxuetangshi( lv_event_t * e) {
@@ -321,17 +361,6 @@ void ui_event_Btnfanhuizhuye3( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_mainscreen_screen_init);
-}
-}
-void ui_event_Imageyuwenbaozang( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
-lv_indev_wait_release(lv_indev_get_act());
-      Imageyuwenbaozangleft_event_handler( e );
-}
-if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT  ) {
-lv_indev_wait_release(lv_indev_get_act());
-      Imageyuwenbaozangright_event_handler( e );
 }
 }
 void ui_event_Btnjiafayunsuan( lv_event_t * e) {
@@ -369,6 +398,17 @@ void ui_event_Dropdownmaxnum( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_VALUE_CHANGED) {
       Dropdownmaxnum_event_handler( e );
+}
+}
+void ui_event_yingyuqimeng( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenyingyuqimengleft_event_handler( e );
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      Screenyingyuqimengright_event_handler( e );
 }
 }
 void ui_event_Btnrenshizimu( lv_event_t * e) {

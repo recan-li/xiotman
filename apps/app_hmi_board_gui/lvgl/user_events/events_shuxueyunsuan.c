@@ -28,6 +28,14 @@ static void update_test_mode(void)
 	snprintf(txt, sizeof(txt), "点击<重新出题>开始测试");
 	
 	lv_label_set_text(ui_Label28, txt);
+
+	if (g_test_mode == TEST_IN_ADD) {
+		lv_obj_add_state( ui_Btnjiafayunsuan, LV_STATE_CHECKED );
+		lv_obj_clear_state( ui_Btnjianfayunsuan, LV_STATE_CHECKED );
+	} else {
+		lv_obj_clear_state( ui_Btnjiafayunsuan, LV_STATE_CHECKED );
+		lv_obj_add_state( ui_Btnjianfayunsuan, LV_STATE_CHECKED );
+	}
 }
 
 void Btnjiafayunsuan_event_handler(lv_event_t * e)
@@ -121,7 +129,7 @@ void screen_shuxueyunsuan_pre_init(lv_event_t * e)
 		rt_kprintf("fail to load max num and test mode\n");
 		ini_save_shuxueyunsuan_info(&g_max_num, &g_test_mode);
 	} else {
-		g_max_num = max_num;
+		g_max_num = (max_num == 0) ? TEST_MAX_NUM : max_num;
 		g_test_mode = test_mode;
 		rt_kprintf("load max num and test mode: %d %d\n", g_max_num, g_test_mode);
 	}

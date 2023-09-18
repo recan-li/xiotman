@@ -21,10 +21,10 @@ lv_obj_clear_flag( ui_Bg, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_LabelTitle = lv_label_create(ui_mainscreen);
 lv_obj_set_width( ui_LabelTitle, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTitle, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelTitle, 0 );
+lv_obj_set_x( ui_LabelTitle, -1 );
 lv_obj_set_y( ui_LabelTitle, -89 );
 lv_obj_set_align( ui_LabelTitle, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelTitle,"基于HMI-Board和LVGL的儿童益智学习机");
+lv_label_set_text(ui_LabelTitle,"  基于HMI-Board和LVGL的儿童益智学习机");
 lv_obj_set_style_text_color(ui_LabelTitle, lv_color_hex(0x14FF2D), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelTitle, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_align(ui_LabelTitle, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -43,8 +43,6 @@ lv_obj_set_style_text_font(ui_Btnyuwenbaozang, &ui_font_chnfont, LV_PART_MAIN| L
 ui_Label1 = lv_label_create(ui_Btnyuwenbaozang);
 lv_obj_set_width( ui_Label1, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label1, -1 );
-lv_obj_set_y( ui_Label1, -1 );
 lv_obj_set_align( ui_Label1, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label1,"语文宝藏");
 
@@ -61,8 +59,6 @@ lv_obj_set_style_text_font(ui_Btnshuxueyunsuan, &ui_font_chnfont, LV_PART_MAIN| 
 ui_Label4 = lv_label_create(ui_Btnshuxueyunsuan);
 lv_obj_set_width( ui_Label4, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label4, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label4, -1 );
-lv_obj_set_y( ui_Label4, -1 );
 lv_obj_set_align( ui_Label4, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label4,"数学运算");
 
@@ -78,8 +74,6 @@ lv_obj_clear_flag( ui_Btnyingyuqimeng, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label5 = lv_label_create(ui_Btnyingyuqimeng);
 lv_obj_set_width( ui_Label5, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label5, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label5, -1 );
-lv_obj_set_y( ui_Label5, -1 );
 lv_obj_set_align( ui_Label5, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label5,"英语启蒙");
 lv_obj_set_style_text_font(ui_Label5, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -96,8 +90,6 @@ lv_obj_clear_flag( ui_Btnzhinengai, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label2 = lv_label_create(ui_Btnzhinengai);
 lv_obj_set_width( ui_Label2, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label2, -1 );
-lv_obj_set_y( ui_Label2, -1 );
 lv_obj_set_align( ui_Label2, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label2,"智能 AI");
 lv_obj_set_style_text_font(ui_Label2, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -114,8 +106,6 @@ lv_obj_clear_flag( ui_Btnquweidonghua, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label3 = lv_label_create(ui_Btnquweidonghua);
 lv_obj_set_width( ui_Label3, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label3, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label3, -1 );
-lv_obj_set_y( ui_Label3, -1 );
 lv_obj_set_align( ui_Label3, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label3,"趣味动画");
 lv_obj_set_style_text_font(ui_Label3, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -132,8 +122,6 @@ lv_obj_clear_flag( ui_Btnxitongshezhi, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Label6 = lv_label_create(ui_Btnxitongshezhi);
 lv_obj_set_width( ui_Label6, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label6, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label6, -1 );
-lv_obj_set_y( ui_Label6, -1 );
 lv_obj_set_align( ui_Label6, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label6,"系统设置");
 lv_obj_set_style_text_font(ui_Label6, &ui_font_chnfont, LV_PART_MAIN| LV_STATE_DEFAULT);

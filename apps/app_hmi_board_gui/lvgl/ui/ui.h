@@ -70,6 +70,7 @@ void ui_event_Switchpasswordmode( lv_event_t * e);
 extern lv_obj_t *ui_Switchpasswordmode;
 // SCREEN: ui_quweidonghua
 void ui_quweidonghua_screen_init(void);
+void ui_event_quweidonghua( lv_event_t * e);
 extern lv_obj_t *ui_quweidonghua;
 extern lv_obj_t *ui_Bg2;
 extern lv_obj_t *ui_LabelTitle2;
@@ -83,23 +84,27 @@ void ui_event_Btnfanhuizhuye1( lv_event_t * e);
 extern lv_obj_t *ui_Btnfanhuizhuye1;
 extern lv_obj_t *ui_Label12;
 extern lv_obj_t *ui_TabViewquweidonghua;
+extern lv_obj_t *ui_Imagequweidonghua;
 // SCREEN: ui_zhinengai
 void ui_zhinengai_screen_init(void);
+void ui_event_zhinengai( lv_event_t * e);
 extern lv_obj_t *ui_zhinengai;
 extern lv_obj_t *ui_Bg3;
 extern lv_obj_t *ui_LabelTitle3;
 void ui_event_Btntonghuagushi( lv_event_t * e);
 extern lv_obj_t *ui_Btntonghuagushi;
 extern lv_obj_t *ui_Label13;
-void ui_event_Btnzhishikepu( lv_event_t * e);
-extern lv_obj_t *ui_Btnzhishikepu;
+void ui_event_Btnzhishibaike( lv_event_t * e);
+extern lv_obj_t *ui_Btnzhishibaike;
 extern lv_obj_t *ui_Label14;
 void ui_event_Btnfanhuizhuye2( lv_event_t * e);
 extern lv_obj_t *ui_Btnfanhuizhuye2;
 extern lv_obj_t *ui_Label15;
 extern lv_obj_t *ui_TabViezhinengai;
+extern lv_obj_t *ui_Imagezhinengai;
 // SCREEN: ui_yuwenbaozang
 void ui_yuwenbaozang_screen_init(void);
+void ui_event_yuwenbaozang( lv_event_t * e);
 extern lv_obj_t *ui_yuwenbaozang;
 extern lv_obj_t *ui_Bg4;
 extern lv_obj_t *ui_LabelTitle4;
@@ -112,7 +117,7 @@ extern lv_obj_t *ui_Label17;
 void ui_event_Btnfanhuizhuye3( lv_event_t * e);
 extern lv_obj_t *ui_Btnfanhuizhuye3;
 extern lv_obj_t *ui_Label18;
-void ui_event_Imageyuwenbaozang( lv_event_t * e);
+extern lv_obj_t *ui_TabViezhinengai1;
 extern lv_obj_t *ui_Imageyuwenbaozang;
 // SCREEN: ui_shuxueyunsuan
 void ui_shuxueyunsuan_screen_init(void);
@@ -141,6 +146,7 @@ void ui_event_Dropdownmaxnum( lv_event_t * e);
 extern lv_obj_t *ui_Dropdownmaxnum;
 // SCREEN: ui_yingyuqimeng
 void ui_yingyuqimeng_screen_init(void);
+void ui_event_yingyuqimeng( lv_event_t * e);
 extern lv_obj_t *ui_yingyuqimeng;
 extern lv_obj_t *ui_Bg6;
 extern lv_obj_t *ui_LabelTitle6;
@@ -154,6 +160,7 @@ void ui_event_Btnfanhuizhuye5( lv_event_t * e);
 extern lv_obj_t *ui_Btnfanhuizhuye5;
 extern lv_obj_t *ui_Label24;
 extern lv_obj_t *ui_TabViezhinengai3;
+extern lv_obj_t *ui_Imageyingyuqimeng;
 extern lv_obj_t *ui____initial_actions0;
 
 LV_IMG_DECLARE( ui_img_fengmian_png);   // assets\fengmian.png

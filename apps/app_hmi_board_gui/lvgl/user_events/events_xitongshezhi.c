@@ -30,6 +30,8 @@ void Btnxitongshengji_event_handler(lv_event_t * e)
 	lv_obj_add_flag(ui_Keyboardwifipasswordinput, LV_OBJ_FLAG_HIDDEN);
 	lv_obj_add_flag(ui_textareainputpasswod, LV_OBJ_FLAG_HIDDEN);
 	lv_obj_add_flag(ui_Switchpasswordmode, LV_OBJ_FLAG_HIDDEN);
+	lv_obj_add_state( ui_Btnxitongshengji, LV_STATE_CHECKED );
+	lv_obj_clear_state( ui_Btnwifishezhi, LV_STATE_CHECKED );
 }
 
 void Btnwifishezhi_event_handler(lv_event_t * e)
@@ -43,6 +45,8 @@ void Btnwifishezhi_event_handler(lv_event_t * e)
 	lv_obj_clear_flag(ui_Keyboardwifipasswordinput, LV_OBJ_FLAG_HIDDEN);
 	lv_obj_clear_flag(ui_textareainputpasswod, LV_OBJ_FLAG_HIDDEN);
 	lv_obj_clear_flag(ui_Switchpasswordmode, LV_OBJ_FLAG_HIDDEN);
+	lv_obj_clear_state( ui_Btnxitongshengji, LV_STATE_CHECKED );
+	lv_obj_add_state( ui_Btnwifishezhi, LV_STATE_CHECKED );
 }
 
 extern int wifi_scan_for_ssid_list(char *ssid_list);
@@ -124,5 +128,7 @@ void screen_xitongshezhi_pre_init(lv_event_t * e)
 	lv_keyboard_set_popovers(ui_Keyboardwifipasswordinput, RT_TRUE);
 	lv_dropdown_set_options(ui_Dropdownwifilist, "Please Scan");
 	lv_textarea_set_text(ui_textareainputpasswod, "");
+	lv_obj_clear_state( ui_Btnxitongshengji, LV_STATE_CHECKED );
+	lv_obj_clear_state( ui_Btnwifishezhi, LV_STATE_CHECKED );
 }
 

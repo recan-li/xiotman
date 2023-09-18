@@ -186,3 +186,55 @@ def Imageyuwenbaozangleft_event_handler(event_struct):
 def Imageyuwenbaozangright_event_handler(event_struct):
     return
 
+
+def Screenyuwenbaozangleft_event_handler(event_struct):
+    return
+
+
+def Screenyuwenbaozangright_event_handler(event_struct):
+    return
+
+
+def yuwenbaozangleft_event_handler(event_struct):
+    return
+
+
+def yuwenbaozangright_event_handler(event_struct):
+    return
+
+
+def Btnzhishibaike_event_handler(event_struct):
+    return
+
+
+def quweidonghualeft_event_handler(event_struct):
+    return
+
+
+def quweidonghuaright_event_handler(event_struct):
+    return
+
+
+def Screenquweidonghualeft_event_handler(event_struct):
+    return
+
+
+def Screenquweidonghuaright_event_handler(event_struct):
+    return
+
+
+def Screenzhinengaileft_event_handler(event_struct):
+    return
+
+
+def Screenzhinengairight_event_handler(event_struct):
+    return
+
+
+def Screenyingyuqimengleft_event_handler(event_struct):
+    return
+
+
+def Screenyingyuqimengright_event_handler(event_struct):
+    return
+

@@ -20,17 +20,11 @@ void welcomescreen_load_bg_pic(void)
 void welcomescreen_event_handler(lv_event_t * e)
 {
 	int delay_s = 3;
-/*
-	while (sdcard_is_ready() != 1) {
-		rt_thread_mdelay(10);
-	}
 
-	welcomescreen_load_bg_pic();
-*/
 	// Your code here
 	rt_kprintf("change screen after %d seconds ...\n", delay_s);
 	//rt_thread_mdelay(delay_s * 1000);
 	//_ui_screen_change( &ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, delay_s * 1000, &ui_mainscreen_screen_init);
-	lv_scr_load_anim(ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 500, delay_s * 1000, true); 
+	lv_scr_load_anim(ui_mainscreen, LV_SCR_LOAD_ANIM_FADE_ON, 200, delay_s * 1000, true); 
 	// 加载屏幕TWO,动画效果为LV_SCR_LOAD_ANIM_FADE_ON,切换时间为500ms,延迟5000ms后从第一屏开始切换，切换完成后删除屏幕一
 }
