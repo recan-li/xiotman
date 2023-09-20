@@ -144,4 +144,7 @@ rt_err_t pwm_audio_get_param(int *rate, int *bits, int *ch);
  */
 rt_err_t pwm_audio_get_status(pwm_audio_status_t *status);
 
+
+rt_err_t pwm_audio_init_entry(void);
+
 #endif

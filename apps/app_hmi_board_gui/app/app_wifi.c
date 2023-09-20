@@ -92,6 +92,8 @@ void wifi_thread_entry(void *parameter)
     int wifi_status_bak = -1;
     rt_sem_t sem = (rt_sem_t)g_wifi_sem;
 
+    wifi_password_exist_checking();
+
     while (1) {
 
         wifi_status = wifi_get_status();

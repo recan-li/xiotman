@@ -23,4 +23,6 @@
 #define CFG_NET_STATUS_LED_OFF_VALUE    	0x01
 #define CFG_NET_STATUS_LED_ON_VALUE       	0x00
 
+#define CFG_WELCOME_WAV_FILE				"/assets/welcome/welcome.wav"
+
 #endif /* APPLICATIONS_CONFIG_H_ */

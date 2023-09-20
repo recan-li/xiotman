@@ -19,7 +19,7 @@ void welcomescreen_load_bg_pic(void)
 
 void welcomescreen_event_handler(lv_event_t * e)
 {
-	int delay_s = 3;
+	int delay_s = 5;
 
 	// Your code here
 	rt_kprintf("change screen after %d seconds ...\n", delay_s);
