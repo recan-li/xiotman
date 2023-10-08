@@ -94,13 +94,16 @@ def gcc_long_cmd_line_excute(cmd, cmdline, _e, old_path):
         #print(new_cmd_line)
         proc = subprocess.Popen(new_cmd_line, env=_e, shell=False)
     except Exception as e:
-        print('Error in calling command:' + cmdline.split(' ')[0])
+        print('Error in calling command: ' + cmdline.split(' ')[0])
         print('Exception: ' + os.strerror(e.errno))
+        os.remove(tmp_gcc_cmd_file)
         return e.errno
     finally:
         os.environ['PATH'] = old_path
 
-    return proc.wait()
+    proc.wait()
+    os.remove(tmp_gcc_cmd_file)
+    return 0
 
 class Win32Spawn:
     def spawn(self, sh, escape, cmd, args, env):

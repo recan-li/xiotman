@@ -2,17 +2,18 @@ import rtconfig
 
 from building import *
 
+UI_C_FILE_PATH = 'user_ui_c_files'
 cwd  = GetCurrentDir()
-CPPPATH = [cwd, 'ui']
+CPPPATH = [cwd, UI_C_FILE_PATH]
 
 src = Glob('*.c')
-src += Glob('ui/screens/*.c')
-src += Glob('ui/ui.c')
-src += Glob('ui/components/ui_comp_hook.c')
-src += Glob('ui/ui_helpers.c')
-src += Glob('ui/ui_events.c')
-src += Glob('ui/images/*.c')
-src += Glob('ui/fonts/*.c')
+src += Glob(UI_C_FILE_PATH + '/screens/*.c')
+src += Glob(UI_C_FILE_PATH + '/ui.c')
+src += Glob(UI_C_FILE_PATH + '/components/ui_comp_hook.c')
+src += Glob(UI_C_FILE_PATH + '/ui_helpers.c')
+src += Glob(UI_C_FILE_PATH + '/ui_events.c')
+src += Glob(UI_C_FILE_PATH + '/images/*.c')
+src += Glob(UI_C_FILE_PATH + '/fonts/*.c')
 src += Glob('user_events/*.c')
 
 group = DefineGroup('LVGL-demo', src, depend = ['BSP_USING_LVGL_USER_DEMO'], CPPPATH = CPPPATH)
