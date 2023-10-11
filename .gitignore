@@ -32,3 +32,4 @@ build/Kconfig
 *.hex
 *.elf
 *.pyc
+project.uvguix.*
