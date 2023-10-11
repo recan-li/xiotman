@@ -1,8 +1,8 @@
-# 瑞萨 CPK-RA2L1 开发板
+# 瑞萨 CPK-RA2E1 开发板
 
 ## 简介
 
-本文档为瑞萨 CPK-RA2L1 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+本文档为瑞萨 CPK-RA2E1 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
 
 主要内容如下：
 
@@ -11,7 +11,7 @@
 
 ## 开发板介绍
 
-CPK-RA2L1 评估板可通过灵活配置软件包和 IDE，可帮助用户对[RA2L1 MCU 群组](https://www2.renesas.cn/cn/zh/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2l1-48mhz-arm-cortex-m23-ultra-low-power-general-purpose-microcontroller)的特性轻松进行评估，并对嵌入系统应用程序进行开发。
+CPK-RA2L1 评估板可通过灵活配置软件包和 IDE，可帮助用户对[RA2E1 MCU 群组](https://www2.renesas.cn/cn/zh/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2l1-48mhz-arm-cortex-m23-ultra-low-power-general-purpose-microcontroller)的特性轻松进行评估，并对嵌入系统应用程序进行开发。
 
 开发板正面外观如下图：
 
@@ -19,7 +19,7 @@ CPK-RA2L1 评估板可通过灵活配置软件包和 IDE，可帮助用户对[RA
 
 该开发板常用 **板载资源** 如下：
 
-- MCU：R7FA2L1AB2DFM，48MHz，Arm Cortex®-M23 内核，256kB 代码闪存, 32kB SRAM
+- MCU：R7FA2E1A92DFM，48MHz，Arm Cortex®-M23 内核，128kB 代码闪存, 16kB SRAM
 - 调试接口：板载 J-Link 接口
 - 扩展接口：两个 PMOD 连接器
 
@@ -53,7 +53,7 @@ CPK-RA2L1 评估板可通过灵活配置软件包和 IDE，可帮助用户对[RA
 
 > 注意：此工程需要使用 J-Flash Lite 工具烧录程序。建议使用 V7.50 及以上版本烧录工程。[J-Link 下载链接](https://www.segger.com/downloads/jlink/)
 
-- 下载：打开 J-Flash lite 工具，选择芯片型号 R7FA2L1AB，点击 OK 进入工具。选择 BSP 目录下 MDK 编译出的 /object/ra6m4.hex 文件，点击 Program Device 按钮开始烧录。具体操作过程可参考下图步骤：
+- 下载：打开 J-Flash lite 工具，选择芯片型号 R7FA2E1A92DFM，点击 OK 进入工具。选择 BSP 目录下 MDK 编译出的 /object/rthread.hex 文件，点击 Program Device 按钮开始烧录。具体操作过程可参考下图步骤：
 
 ![image-20211011182434519](docs/picture/jflash.png) 
 

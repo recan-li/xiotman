@@ -14,14 +14,14 @@
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>R7FA2E1A9</Device>
+          <Device>R7FA2E1A92DFM</Device>
           <Vendor>Renesas</Vendor>
           <PackID>Renesas.RA_DFP.3.5.0</PackID>
           <PackURL>https://www2.renesas.eu/Keil_MDK_Packs/</PackURL>
           <Cpu>IRAM(0x20004000,0x004000) IROM(0,0x020000) IROM2(0x40100000,0x001000) IROM3(0x01010000,0x34) CPUTYPE("Cortex-M23") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2V8M(-S0 -C0 -P0 -FD20004000 -FC1000 -FN3 -FF0RA2E1_128K -FS00 -FL020000 -FF1RA2E1_DATA -FS140100000 -FL11000 -FF2RA2E1_CONF -FS21010000 -FL234 -FP0($$Device:R7FA2E1A9$Flash\RA2E1_128K.FLM) -FP1($$Device:R7FA2E1A9$Flash\RA2E1_DATA.FLM) -FP2($$Device:R7FA2E1A9$Flash\RA2E1_CONF.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2V8M(-S0 -C0 -P0 -FD20004000 -FC1000 -FN3 -FF0RA2E1_128K -FS00 -FL020000 -FF1RA2E1_DATA -FS140100000 -FL11000 -FF2RA2E1_CONF -FS21010000 -FL234 -FP0($$Device:R7FA2E1A92DFM$Flash\RA2E1_128K.FLM) -FP1($$Device:R7FA2E1A92DFM$Flash\RA2E1_DATA.FLM) -FP2($$Device:R7FA2E1A92DFM$Flash\RA2E1_CONF.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile></RegisterFile>
           <MemoryEnv></MemoryEnv>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:R7FA2E1A9$SVD\R7FA2E1A9.svd</SFDFile>
+          <SFDFile>$$Device:R7FA2E1A92DFM$SVD\R7FA2E1A92DFM.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -72,7 +72,7 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>ra_bak\board_cfg.bat</UserProg1Name>
+            <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -137,8 +137,8 @@
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\UL2V8M.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash2></Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -188,13 +188,13 @@
             <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>1</hadIROM2>
-            <StupSel>8</StupSel>
+            <StupSel>0</StupSel>
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
-            <RoSelD>4</RoSelD>
-            <RwSelD>3</RwSelD>
+            <RoSelD>0</RoSelD>
+            <RwSelD>0</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
             <NoZi1>0</NoZi1>
@@ -205,12 +205,12 @@
             <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>1</Ir1Chk>
+            <Ir1Chk>0</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>1</Im1Chk>
+            <Im1Chk>0</Im1Chk>
             <Im2Chk>0</Im2Chk>
             <OnChipMemories>
               <Ocm1>
@@ -322,7 +322,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>1</wLevel>
+            <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
@@ -339,7 +339,7 @@
               <MiscControls>-Wno-license-management -Wunused -Wuninitialized -Wall -Wmissing-declarations  -Wpointer-arith -Waggregate-return -Wfloat-equal</MiscControls>
               <Define>RT_USING_LIBC, RT_USING_ARMLIBC, __STDC_LIMIT_MACROS, __RTTHREAD__, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\include;ra_cfg\fsp_cfg\bsp;..\..\..\components\drivers\include;..\..\..\libcpu\arm\cortex-m23;..\libraries\HAL_Drivers;..\..\..\components\libc\compilers\common\extension;..\..\..\libcpu\arm\common;..\..\..\components\dfs\include;..\..\..\components\drivers\include;ra_cfg\fsp_cfg;.;..\..\..\components\libc\compilers\common\extension\fcntl\octal;board;board\ports;..\..\..\components\finsh;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\ipc;..\libraries\HAL_Drivers\config;.\board;.\ra_cfg\fsp_cfg\bsp;.\ra\board\ra2e1_ek</IncludePath>
+              <IncludePath>board\ports;..\..\rtos\rt-thread\5.0.x\components\drivers\include;..\..\rtos\rt-thread\5.0.x\libcpu\arm\cortex-m23;.;..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\extension\fcntl\octal;libraries\HAL_Drivers\config;..\..\rtos\rt-thread\5.0.x\components\libc\posix\io\poll;..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\extension;..\..\rtos\rt-thread\5.0.x\components\drivers\include;..\..\rtos\rt-thread\5.0.x\components\finsh;..\..\rtos\rt-thread\5.0.x\include;..\..\apps\app_uart_debug\main;..\..\rtos\rt-thread\5.0.x\components\dfs\include;..\..\rtos\rt-thread\5.0.x\components\libc\posix\ipc;ra_cfg\fsp_cfg;board;libraries\HAL_Drivers;ra_cfg\fsp_cfg\bsp;..\..\rtos\rt-thread\5.0.x\components\libc\posix\io\stdio;..\..\rtos\rt-thread\5.0.x\libcpu\arm\common;..\..\rtos\rt-thread\5.0.x\components\drivers\include;..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -386,42 +386,42 @@
             <File>
               <FileName>syscall_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\armlibc\syscall_mem.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\armlibc\syscall_mem.c</FilePath>
             </File>
             <File>
               <FileName>syscalls.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\armlibc\syscalls.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\armlibc\syscalls.c</FilePath>
             </File>
             <File>
               <FileName>cctype.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\cctype.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\cctype.c</FilePath>
             </File>
             <File>
               <FileName>cstdio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\cstdio.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\cstdio.c</FilePath>
             </File>
             <File>
               <FileName>cstdlib.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\cstdlib.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\cstdlib.c</FilePath>
             </File>
             <File>
               <FileName>cstring.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\cstring.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\cstring.c</FilePath>
             </File>
             <File>
               <FileName>ctime.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\ctime.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\ctime.c</FilePath>
             </File>
             <File>
               <FileName>cwchar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\libc\compilers\common\cwchar.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\libc\compilers\common\cwchar.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -431,22 +431,22 @@
             <File>
               <FileName>div0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\libcpu\arm\common\div0.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\libcpu\arm\common\div0.c</FilePath>
             </File>
             <File>
               <FileName>showmem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\libcpu\arm\common\showmem.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\libcpu\arm\common\showmem.c</FilePath>
             </File>
             <File>
               <FileName>context_rvds.S</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\..\libcpu\arm\cortex-m23\context_rvds.S</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\libcpu\arm\cortex-m23\context_rvds.S</FilePath>
             </File>
             <File>
               <FileName>cpuport.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\libcpu\arm\cortex-m23\cpuport.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\libcpu\arm\cortex-m23\cpuport.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -456,47 +456,47 @@
             <File>
               <FileName>completion.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\completion.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\completion.c</FilePath>
             </File>
             <File>
               <FileName>dataqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\dataqueue.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\dataqueue.c</FilePath>
             </File>
             <File>
               <FileName>pipe.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\pipe.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\pipe.c</FilePath>
             </File>
             <File>
               <FileName>ringblk_buf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\ringblk_buf.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\ringblk_buf.c</FilePath>
             </File>
             <File>
               <FileName>ringbuffer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\ringbuffer.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\ringbuffer.c</FilePath>
             </File>
             <File>
               <FileName>waitqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\waitqueue.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\waitqueue.c</FilePath>
             </File>
             <File>
               <FileName>workqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\ipc\workqueue.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\ipc\workqueue.c</FilePath>
             </File>
             <File>
               <FileName>pin.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\misc\pin.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\misc\pin.c</FilePath>
             </File>
             <File>
               <FileName>serial_v2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\drivers\serial\serial_v2.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\drivers\serial\serial_v2.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -506,7 +506,7 @@
             <File>
               <FileName>drv_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\HAL_Drivers\drv_common.c</FilePath>
+              <FilePath>libraries\HAL_Drivers\drv_common.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -553,7 +553,7 @@
                       <MiscControls>  -std=c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -562,7 +562,7 @@
             <File>
               <FileName>drv_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\HAL_Drivers\drv_gpio.c</FilePath>
+              <FilePath>libraries\HAL_Drivers\drv_gpio.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -609,7 +609,7 @@
                       <MiscControls>  -std=c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -618,7 +618,7 @@
             <File>
               <FileName>drv_usart_v2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\HAL_Drivers\drv_usart_v2.c</FilePath>
+              <FilePath>libraries\HAL_Drivers\drv_usart_v2.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -665,7 +665,7 @@
                       <MiscControls>  -std=c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -679,22 +679,22 @@
             <File>
               <FileName>dfs_posix.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\dfs\src\dfs_posix.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\dfs\src\dfs_posix.c</FilePath>
             </File>
             <File>
               <FileName>dfs_fs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\dfs\src\dfs_fs.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\dfs\src\dfs_fs.c</FilePath>
             </File>
             <File>
               <FileName>dfs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\dfs\src\dfs.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\dfs\src\dfs.c</FilePath>
             </File>
             <File>
               <FileName>dfs_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\dfs\src\dfs_file.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\dfs\src\dfs_file.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -704,27 +704,27 @@
             <File>
               <FileName>shell.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\shell.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\finsh\shell.c</FilePath>
             </File>
             <File>
               <FileName>msh.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\msh.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\finsh\msh.c</FilePath>
             </File>
             <File>
               <FileName>msh_parse.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\msh_parse.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\finsh\msh_parse.c</FilePath>
             </File>
             <File>
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\cmd.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\finsh\cmd.c</FilePath>
             </File>
             <File>
               <FileName>msh_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\msh_file.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\components\finsh\msh_file.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -734,67 +734,77 @@
             <File>
               <FileName>clock.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\clock.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\clock.c</FilePath>
             </File>
             <File>
               <FileName>components.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\components.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\components.c</FilePath>
             </File>
             <File>
               <FileName>device.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\device.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\device.c</FilePath>
             </File>
             <File>
               <FileName>idle.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\idle.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\idle.c</FilePath>
             </File>
             <File>
               <FileName>ipc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\ipc.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\ipc.c</FilePath>
             </File>
             <File>
               <FileName>irq.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\irq.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\irq.c</FilePath>
             </File>
             <File>
               <FileName>kservice.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\kservice.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\kservice.c</FilePath>
             </File>
             <File>
               <FileName>mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\mem.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\mem.c</FilePath>
             </File>
             <File>
               <FileName>mempool.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\mempool.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\mempool.c</FilePath>
             </File>
             <File>
               <FileName>object.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\object.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\object.c</FilePath>
             </File>
             <File>
               <FileName>scheduler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\scheduler.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\scheduler.c</FilePath>
             </File>
             <File>
               <FileName>thread.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\thread.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\thread.c</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\timer.c</FilePath>
+              <FilePath>..\..\rtos\rt-thread\5.0.x\src\timer.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main</GroupName>
+          <Files>
+            <File>
+              <FileName>app_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\apps\app_uart_debug\main\app_main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -805,6 +815,11 @@
               <FileName>hal_entry.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\hal_entry.c</FilePath>
+            </File>
+            <File>
+              <FileName>SConscript</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\SConscript</FilePath>
             </File>
           </Files>
         </Group>

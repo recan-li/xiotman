@@ -119,18 +119,18 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>JL2CM3</Key>
+          <Name>-U831004110 -O111 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(5BA02477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8013 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20004000 -FC2000 -FN3 -FF0RA2E1_128K.FLM -FS00 -FL020000 -FP0($$Device:R7FA2E1A92DFM$Flash\RA2E1_128K.FLM) -FF1RA2E1_DATA.FLM -FS140100000 -FL11000 -FP1($$Device:R7FA2E1A92DFM$Flash\RA2E1_DATA.FLM) -FF2RA2E1_CONF.FLM -FS21010000 -FL234 -FP2($$Device:R7FA2E1A92DFM$Flash\RA2E1_CONF.FLM)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2V8M</Key>
-          <Name>UL2V8M(-S0 -C0 -P0 -FD20000000 -FC2000 -FN3 -FF0RA2L1_256K -FS00 -FL040000 -FF1RA2L1_DATA -FS140100000 -FL12000 -FF2RA2L1_CONF -FS21010000 -FL234 -FP0($$Device:R7FA2L1AB2DFM$Flash\RA2L1_256K.FLM) -FP1($$Device:R7FA2L1AB2DFM$Flash\RA2L1_DATA.FLM) -FP2($$Device:R7FA2L1AB2DFM$Flash\RA2L1_CONF.FLM))</Name>
+          <Name>UL2V8M(-S0 -C0 -P0 )  -FN3 -FC1000 -FD20004000 -FF0RA2E1_128K -FF1RA2E1_DATA -FF2RA2E1_CONF -FL020000 -FL11000 -FL234 -FS00 -FS140100000 -FS21010000 -FP0($$Device:R7FA2E1A92DFM$Flash\RA2E1_128K.FLM) -FP1($$Device:R7FA2E1A92DFM$Flash\RA2E1_DATA.FLM) -FP2($$Device:R7FA2E1A92DFM$Flash\RA2E1_CONF.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
+          <Name>(6010=-1,-1,-1,-1,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=-1,-1,-1,-1,0)(6009=-1,-1,-1,-1,0)(6014=-1,-1,-1,-1,0)(6015=-1,-1,-1,-1,0)(6003=-1,-1,-1,-1,0)(6000=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>

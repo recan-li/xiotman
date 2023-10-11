@@ -3,17 +3,17 @@
   <generalSettings>
     <option key="#Board#" value="board.custom"/>
     <option key="CPU" value="RA2E1"/>
-    <option key="#TargetName#" value="R7FA2E1A93CFM"/>
+    <option key="#TargetName#" value="R7FA2E1A92DFM"/>
     <option key="#TargetARCHITECTURE#" value="cortex-m23"/>
-    <option key="#DeviceCommand#" value="R7FA2E1A9"/>
+    <option key="#DeviceCommand#" value="R7FA2E1A92DFM"/>
     <option key="#RTOS#" value="_none"/>
-    <option key="#pinconfiguration#" value="R7FA2L1AB2DFM.pincfg"/>
+    <option key="#pinconfiguration#" value="R7FA2E1A92DFM.pincfg"/>
     <option key="#FSPVersion#" value="3.5.0"/>
     <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##ra2l1_cpk##|Renesas##BSP##Board##ra2e1_ek##"/>
     <option key="#SELECTED_TOOLCHAIN#" value="com.arm.toolchain"/>
   </generalSettings>
   <raBspConfiguration>
-    <config id="config.bsp.ra2e1.R7FA2E1A93CFM">
+    <config id="config.bsp.ra2e1.R7FA2E1A92DFM">
       <property id="config.bsp.part_number" value="config.bsp.part_number.value"/>
       <property id="config.bsp.rom_size_bytes" value="config.bsp.rom_size_bytes.value"/>
       <property id="config.bsp.rom_size_bytes_hidden" value="131072"/>
@@ -143,12 +143,12 @@
       <description>Custom Board Support Files</description>
       <originalPack>Renesas.RA_board_custom.3.5.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="ra2e1" subgroup="device" variant="R7FA2E1A93CFM" vendor="Renesas" version="3.5.0">
-      <description>Board support package for R7FA2E1A93CFM</description>
-      <originalPack>Renesas.RA_mcu_ra2e1.3.5.0.pack</originalPack>
-    </component>
     <component apiversion="" class="BSP" condition="" group="ra2e1" subgroup="device" variant="" vendor="Renesas" version="3.5.0">
       <description>Board support package for RA2E1</description>
+      <originalPack>Renesas.RA_mcu_ra2e1.3.5.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="ra2e1" subgroup="device" variant="R7FA2E1A92DFM" vendor="Renesas" version="3.5.0">
+      <description>Board support package for R7FA2E1A92DFM</description>
       <originalPack>Renesas.RA_mcu_ra2e1.3.5.0.pack</originalPack>
     </component>
   </raComponentSelection>
@@ -484,6 +484,15 @@
       <configSetting altId="spi0.ssl0.p103" configurationId="spi0.ssl0"/>
     </pincfg>
     <pincfg active="false" name="R7FA2E1A93CFM.pincfg" selected="false" symbol="">
+      <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
+      <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
+      <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
+      <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
+      <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
+      <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
+      <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+    </pincfg>
+    <pincfg active="false" name="R7FA2E1A92DFM.pincfg" selected="false" symbol="">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>

@@ -128,6 +128,9 @@
 /* Wiced WiFi */
 
 
+/* CYW43012 WiFi */
+
+
 /* IoT Cloud */
 
 
@@ -197,7 +200,7 @@
 /* Arduino libraries */
 
 
-/* Projects */
+/* Projects and Demos */
 
 
 /* Sensors */
@@ -231,12 +234,12 @@
 /* MCU Configuration */
 
 #define SOC_FAMILY_RENESAS
-#define SOC_SERIES_R7FA2L1
+#define SOC_SERIES_R7FA2E1
 
 /* Hardware Drivers Config */
 
-#define CPK_R7FA2L1AB
-#define SOC_R7FA2L1AB
+#define CPK_R7FA2E1A9
+#define SOC_R7FA2E1A9
 
 /* Onboard Peripheral Drivers */
 

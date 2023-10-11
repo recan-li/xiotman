@@ -60,7 +60,7 @@ extern "C"
 #endif
 #endif /* SOC_SERIES_R7FA6M4 */
 
-#ifdef SOC_SERIES_R7FA2L1
+#if defined(SOC_SERIES_R7FA2L1) || defined(SOC_SERIES_R7FA2E1)
 #include "ra2l1/uart_config.h"
 
 #ifdef BSP_USING_ADC
@@ -78,7 +78,7 @@ extern "C"
 #ifdef BSP_USING_CAN
 #include "ra2l1/can_config.h"
 #endif
-#endif /* SOC_SERIES_R7FA2L1 */
+#endif /* SOC_SERIES_R7FA2L1 || SOC_SERIES_R7FA2E1 */
 
 #ifdef SOC_SERIES_R7FA4M2
 #include "ra4m2/uart_config.h"

@@ -12,6 +12,7 @@
       <project_files>
         <file category="include" name="src/"/>
         <file category="source" name="src/hal_entry.c"/>
+        <file category="other" name="src/SConscript"/>
       </project_files>
     </generator>
   </generators>

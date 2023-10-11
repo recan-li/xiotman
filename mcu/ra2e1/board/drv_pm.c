@@ -394,7 +394,7 @@ static void change_system_clock(rt_uint8_t clockmode)
     cgc_clocks_cfg_t sys_clk_cfg     = { RESET_VALUE };
     cgc_pll_cfg_t new_clk            = { RESET_VALUE };
 
-#if defined (CPK_R7FA2L1AB)
+#if defined (CPK_R7FA2L1AB) || defined (CPK_R7FA2E1A9)
     preffered_ra_clock_setting();
     sys_clk_cfg.mainosc_state = CGC_CLOCK_CHANGE_STOP;
 #endif

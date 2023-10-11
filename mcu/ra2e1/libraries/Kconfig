@@ -21,6 +21,12 @@ config SOC_SERIES_R7FA2L1
     select SOC_FAMILY_RENESAS
     default n
 
+config SOC_SERIES_R7FA2E1
+    bool
+    select ARCH_ARM_CORTEX_M23
+    select SOC_FAMILY_RENESAS
+    default n
+
 config SOC_SERIES_R7FA6M5
     bool
     select ARCH_ARM_CORTEX_M33
