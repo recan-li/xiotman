@@ -84,11 +84,11 @@ RT-Thread技术社区个人主页：[https://club.rt-thread.org/u/1f240523a93e43
 
 - [**【RA4M2设计挑战赛】基于RA4M2和阿里云物联网平台的智能卧室小管家**](https://bbs.elecfans.com/jishu_2336364_1_1.html)【在当次比赛中获得三等奖】
 
-![image-20231010231709662](C:\Users\takeout.NEWNEW\AppData\Roaming\Typora\typora-user-images\image-20231010231709662.png)
+![image-20231010231709662](https://s2.loli.net/2023/10/11/AJRZ6H5FUhqOzEM.png?my_wx_id=721317716)
 
 - [**【RT-Thread应用设计大赛】基于RT-Thread和RA6M4实现samba服务的移动网盘**](https://club.rt-thread.org/ask/article/4ad11a94e24e97fd.html) 【在当次比赛中获得一等奖】
 
-![image-20231010231731730](C:\Users\takeout.NEWNEW\AppData\Roaming\Typora\typora-user-images\image-20231010231731730.png)
+![image-20231010231731730](https://s2.loli.net/2023/10/11/DX1zxiRYV236BCA.png?my_wx_id=721317716)
 
 - [**【Renesas GUI挑战赛】基于HMI-Board和LVGL的儿童益智学习机**](https://club.rt-thread.org/ask/article/572b6bd6f909082d.html) 【目前还在评奖阶段】
 
