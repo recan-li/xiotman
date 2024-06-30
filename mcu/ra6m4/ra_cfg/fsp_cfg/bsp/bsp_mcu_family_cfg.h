@@ -75,7 +75,7 @@
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 8) /* IIC1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 9) /* IIC0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 11) /* USBFS */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 18) /* SPI1 */ | \
+            (((1 > 0) ? 0U : 1U) << 18) /* SPI1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 19) /* SPI0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 22) /* SCI9 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 23) /* SCI8 */ | \
@@ -138,7 +138,7 @@
 #ifndef BSP_TZ_CFG_MSSAR
 #define BSP_TZ_CFG_MSSAR (\
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* ELC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* DTC_DMAC */ | \
+            (((2 > 0) ? 0U : 1U) << 1) /* DTC_DMAC */ | \
             0xfffffffc) /* Unused */
 #endif
 
@@ -190,7 +190,7 @@
             /* Security attribution for registers for IRQ channels. */
 #ifndef BSP_TZ_CFG_ICUSARA
 #define BSP_TZ_CFG_ICUSARA (\
-            (((1 > 0) ? 0U : 1U) << 0U) /* External IRQ0 */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0U) /* External IRQ0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1U) /* External IRQ1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2U) /* External IRQ2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3U) /* External IRQ3 */ | \
@@ -205,7 +205,7 @@
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 12U) /* External IRQ12 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 13U) /* External IRQ13 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 14U) /* External IRQ14 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15U) /* External IRQ15 */ | \
+            (((1 > 0) ? 0U : 1U) << 15U) /* External IRQ15 */ | \
             0xFFFF0000U)
 #endif
 
@@ -244,7 +244,7 @@
 #endif
 
             /* Set DTCSTSAR if the Secure program uses the DTC. */
-#if RA_NOT_DEFINED == RA_NOT_DEFINED
+#if 2 == RA_NOT_DEFINED
  #define BSP_TZ_CFG_DTC_USED (0U)
 #else
  #define BSP_TZ_CFG_DTC_USED (1U)

@@ -106,35 +106,53 @@ SCI_SPIx_CALLBACK(9);
     rt_event_recv(event, \
     RA_SCI_SPI##n##_EVENT, \
     RT_EVENT_FLAG_OR | RT_EVENT_FLAG_CLEAR, \
-    RT_WAITING_FOREVER, \
+    rt_tick_from_millisecond(1000), \
     &recved);
 
 static rt_err_t ra_wait_complete(rt_event_t event, const char bus_name[RT_NAME_MAX])
 {
     rt_uint32_t recved = 0x00;
+    rt_err_t ret = RT_EOK;
 
-    switch (bus_name[6])
+    switch (bus_name[4])
     {
-        case '0':
-        return SCI_SPIx_EVENT_RECV(0);
-        case '1':
-        return SCI_SPIx_EVENT_RECV(1);
-        case '2':
-        return SCI_SPIx_EVENT_RECV(2);
-        case '3':
-        return SCI_SPIx_EVENT_RECV(3);
-        case '4':
-        return SCI_SPIx_EVENT_RECV(4);
-        case '5':
-        return SCI_SPIx_EVENT_RECV(5);
-        case '6':
-        return SCI_SPIx_EVENT_RECV(6);
-        case '7':
-        return SCI_SPIx_EVENT_RECV(7);
-        case '8':
-        return SCI_SPIx_EVENT_RECV(8);
-        case '9':
-        return SCI_SPIx_EVENT_RECV(9);
+    case '0':
+        ret = SCI_SPIx_EVENT_RECV(0);
+        break;
+    case '1':
+        ret = SCI_SPIx_EVENT_RECV(1);
+        break;
+    case '2':
+        ret = SCI_SPIx_EVENT_RECV(2);
+        break;
+    case '3':
+        ret = SCI_SPIx_EVENT_RECV(3);
+        break;
+    case '4':
+        ret = SCI_SPIx_EVENT_RECV(4);
+        break;
+    case '5':
+        ret = SCI_SPIx_EVENT_RECV(5);
+        break;
+    case '6':
+        ret = SCI_SPIx_EVENT_RECV(6);
+        break;
+    case '7':
+        ret = SCI_SPIx_EVENT_RECV(7);
+        break;
+    case '8':
+        ret = SCI_SPIx_EVENT_RECV(8);
+        break;
+    case '9':
+        ret = SCI_SPIx_EVENT_RECV(9);
+        break;
+    default:
+        break;
+    }
+    if (ret != RT_EOK)
+    {
+        LOG_D("%s ra_wait_complete failed!", bus_name);
+        return ret;
     }
     return -RT_EINVAL;
 }
@@ -155,7 +173,6 @@ static spi_bit_width_t ra_width_shift(rt_uint8_t data_width)
 static rt_err_t ra_write_message(struct rt_spi_device *device, const void *send_buf, const rt_size_t len)
 {
     RT_ASSERT(device != NULL);
-    RT_ASSERT(device->parent.user_data != NULL);
     RT_ASSERT(send_buf != NULL);
     RT_ASSERT(len > 0);
     rt_err_t err = RT_EOK;
@@ -177,7 +194,6 @@ static rt_err_t ra_write_message(struct rt_spi_device *device, const void *send_
 static rt_err_t ra_read_message(struct rt_spi_device *device, void *recv_buf, const rt_size_t len)
 {
     RT_ASSERT(device != NULL);
-    RT_ASSERT(device->parent.user_data != NULL);
     RT_ASSERT(recv_buf != NULL);
     RT_ASSERT(len > 0);
     rt_err_t err = RT_EOK;
@@ -226,7 +242,6 @@ static rt_err_t ra_hw_spi_configure(struct rt_spi_device *device,
     rt_err_t err = RT_EOK;
 
     struct ra_sci_spi *spi_dev =  rt_container_of(device->bus, struct ra_sci_spi, bus);
-    spi_dev->cs_pin = (rt_uint32_t)device->parent.user_data;
 
     /**< data_width : 1 -> 8 bits , 2 -> 16 bits, 4 -> 32 bits, default 32 bits*/
     rt_uint8_t data_width = configuration->data_width / 8;
@@ -237,7 +252,7 @@ static rt_err_t ra_hw_spi_configure(struct rt_spi_device *device,
     sci_spi_extended_cfg_t *spi_cfg = (sci_spi_extended_cfg_t *)spi_dev->ra_spi_handle_t->spi_cfg_t->p_extend;
 
     /**< Configure Select Line */
-    rt_pin_write(spi_dev->cs_pin, PIN_HIGH);
+    rt_pin_write(device->cs_pin, PIN_HIGH);
 
     /**< config bitrate */
     R_SCI_SPI_CalculateBitrate(spi_dev->rt_spi_cfg_t->max_hz, &spi_cfg->clk_div, false);
@@ -257,22 +272,20 @@ static rt_err_t ra_hw_spi_configure(struct rt_spi_device *device,
     return RT_EOK;
 }
 
-static rt_uint32_t ra_spixfer(struct rt_spi_device *device, struct rt_spi_message *message)
+static rt_ssize_t ra_spixfer(struct rt_spi_device *device, struct rt_spi_message *message)
 {
     RT_ASSERT(device != RT_NULL);
     RT_ASSERT(device->bus != RT_NULL);
     RT_ASSERT(message != RT_NULL);
 
     rt_err_t err = RT_EOK;
-    struct ra_sci_spi *spi_dev =  rt_container_of(device->bus, struct ra_sci_spi, bus);
-    spi_dev->cs_pin = (rt_uint32_t)device->parent.user_data;
 
-    if (message->cs_take && !(device->config.mode & RT_SPI_NO_CS))
+    if (message->cs_take && !(device->config.mode & RT_SPI_NO_CS) && (device->cs_pin != PIN_NONE))
     {
         if (device->config.mode & RT_SPI_CS_HIGH)
-            rt_pin_write(spi_dev->cs_pin, PIN_HIGH);
+            rt_pin_write(device->cs_pin, PIN_HIGH);
         else
-            rt_pin_write(spi_dev->cs_pin, PIN_LOW);
+            rt_pin_write(device->cs_pin, PIN_LOW);
     }
 
     if (message->length > 0)
@@ -294,12 +307,12 @@ static rt_uint32_t ra_spixfer(struct rt_spi_device *device, struct rt_spi_messag
         }
     }
 
-    if (message->cs_release && !(device->config.mode & RT_SPI_NO_CS))
+    if (message->cs_release && !(device->config.mode & RT_SPI_NO_CS) && (device->cs_pin != PIN_NONE))
     {
         if (device->config.mode & RT_SPI_CS_HIGH)
-            rt_pin_write(spi_dev->cs_pin, PIN_LOW);
+            rt_pin_write(device->cs_pin, PIN_LOW);
         else
-            rt_pin_write(spi_dev->cs_pin, PIN_HIGH);
+            rt_pin_write(device->cs_pin, PIN_HIGH);
     }
     return err;
 }
@@ -333,4 +346,30 @@ int ra_hw_sci_spi_init(void)
     return RT_EOK;
 }
 INIT_BOARD_EXPORT(ra_hw_sci_spi_init);
+
+/**
+  * Attach the spi device to SPI bus, this function must be used after initialization.
+  */
+rt_err_t rt_hw_sci_spi_device_attach(const char *bus_name, const char *device_name, rt_base_t cs_pin)
+{
+    RT_ASSERT(bus_name != RT_NULL);
+    RT_ASSERT(device_name != RT_NULL);
+
+    rt_err_t result;
+    struct rt_spi_device *spi_device;
+
+    /* attach the device to spi bus*/
+    spi_device = (struct rt_spi_device *)rt_malloc(sizeof(struct rt_spi_device));
+    RT_ASSERT(spi_device != RT_NULL);
+
+    result = rt_spi_bus_attach_device_cspin(spi_device, device_name, bus_name, cs_pin, RT_NULL);
+    if (result != RT_EOK)
+    {
+        LOG_E("%s attach to %s faild, %d\n", device_name, bus_name, result);
+    }
+
+    LOG_D("%s attach to %s done", device_name, bus_name);
+
+    return result;
+}
 #endif /* RT_USING_SPI */

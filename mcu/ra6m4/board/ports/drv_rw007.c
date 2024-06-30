@@ -14,6 +14,20 @@ static void rw007_gpio_init(void)
     rt_pin_mode(RA_RW007_RST_PIN, PIN_MODE_OUTPUT);
     rt_pin_mode(RA_RW007_INT_BUSY_PIN, PIN_MODE_INPUT_PULLDOWN);
 
+#if 0
+    {
+        int cnt = 3;
+        while(cnt--) {
+            rt_kprintf("%s:%d ... low\n", __func__, __LINE__);
+            rt_pin_write(RA_RW007_RST_PIN, PIN_LOW);
+            rt_thread_delay(rt_tick_from_millisecond(3000));
+            rt_kprintf("%s:%d ... high\n", __func__, __LINE__);
+            rt_pin_write(RA_RW007_RST_PIN, PIN_HIGH);
+            rt_thread_delay(rt_tick_from_millisecond(3000));  
+        }
+    }
+#endif
+    
     /* Reset rw007 and config mode */
     rt_pin_write(RA_RW007_RST_PIN, PIN_LOW);
     rt_thread_delay(rt_tick_from_millisecond(100));
@@ -37,7 +51,7 @@ int wifi_spi_device_init(void)
     uint32_t cs_pin = RA_RW007_CS_PIN;
 
     rw007_gpio_init();
-    rt_hw_spi_device_attach(RA_RW007_SPI_BUS_NAME, "wspi", cs_pin, RT_NULL);
+    rt_hw_spi_device_attach(RA_RW007_SPI_BUS_NAME, "wspi", cs_pin);
     rt_hw_wifi_init("wspi");
 
     rt_wlan_set_mode(RT_WLAN_DEVICE_STA_NAME, RT_WLAN_STATION);

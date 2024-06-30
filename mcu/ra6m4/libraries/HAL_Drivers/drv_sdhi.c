@@ -38,7 +38,7 @@ rt_err_t command_send(sdhi_instance_ctrl_t *p_ctrl, struct rt_mmcsd_cmd *cmd)
     {
         if (timeout == 0)
         {
-            return RT_ETIMEOUT;
+            return -RT_ETIMEOUT;
         }
         R_BSP_SoftwareDelay(1U, BSP_DELAY_UNITS_MICROSECONDS);
         timeout--;
@@ -93,6 +93,11 @@ rt_err_t command_send(sdhi_instance_ctrl_t *p_ctrl, struct rt_mmcsd_cmd *cmd)
             {
                 cmd->cmd_code |= SDHI_CMD_DATA_DIR_READ;
             }
+        }
+        if (data->blks > 1)
+        {
+            cmd->cmd_code |= SDHI_BLK_TRANSFER;
+            cmd->cmd_code |= SDHI_BLK_NOT_AUTO_STOP;
         }
     }
     p_ctrl->p_reg->SD_CMD = cmd->cmd_code;
@@ -165,7 +170,7 @@ rt_err_t command_send(sdhi_instance_ctrl_t *p_ctrl, struct rt_mmcsd_cmd *cmd)
         if (0U == timeout)
         {
             cmd->err = -RT_ETIMEOUT;
-            return RT_ERROR;
+            return -RT_ERROR;
         }
 
         /* Wait 1 us for consistent loop timing. */
@@ -223,7 +228,7 @@ rt_err_t transfer_write(sdhi_instance_ctrl_t *const p_ctrl,
     fsp_err_t err = p_ctrl->p_cfg->p_lower_lvl_transfer->p_api->reconfigure(p_ctrl->p_cfg->p_lower_lvl_transfer->p_ctrl,
                     p_ctrl->p_cfg->p_lower_lvl_transfer->p_cfg->p_info);
     if (FSP_SUCCESS != err)
-        return RT_ERROR;
+        return -RT_ERROR;
     return RT_EOK;
 }
 
@@ -276,7 +281,7 @@ rt_err_t transfer_read(sdhi_instance_ctrl_t *const p_ctrl,
     fsp_err_t err = p_ctrl->p_cfg->p_lower_lvl_transfer->p_api->reconfigure(p_ctrl->p_cfg->p_lower_lvl_transfer->p_ctrl,
                     p_ctrl->p_cfg->p_lower_lvl_transfer->p_cfg->p_info);
     if (err != FSP_SUCCESS)
-        return RT_ERROR;
+        return -RT_ERROR;
 
     return RT_EOK;
 }
@@ -393,7 +398,7 @@ static rt_err_t clock_rate_set(sdhi_instance_ctrl_t *p_ctrl, uint32_t max_rate)
         }
     }
 
-    return RT_ERROR;
+    return -RT_ERROR;
 }
 
 void ra_sdhi_set_iocfg(struct rt_mmcsd_host *host, struct rt_mmcsd_io_cfg *io_cfg)
@@ -491,7 +496,7 @@ struct rt_mmcsd_host *sdio_host_create(struct ra_sdhi *sdhi_des)
     ra_sdhi_enable_sdio_irq(host, 1);
 
     /* ready to change */
-    mmcsd_change(host);
+//    mmcsd_change(host);
 
     return host;
 }
@@ -508,3 +513,8 @@ int rt_hw_sdhi_init(void)
     return 0;
 }
 INIT_DEVICE_EXPORT(rt_hw_sdhi_init);
+
+void sdcard_change(void)
+{
+    mmcsd_change(host);
+}

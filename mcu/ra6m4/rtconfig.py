@@ -13,6 +13,12 @@ if os.getenv('APP_ROOT'):
 else:
     USER_APP_DIR = ''
 
+# packages src path
+if os.getenv('PKGS_SRC_ROOT'):
+    COMP_PACKAGES_DIR = os.getenv('PKGS_SRC_ROOT')
+else:
+    COMP_PACKAGES_DIR = 'packages'
+
 # toolchains options
 ARCH='arm'
 CPU='cortex-m4'
@@ -68,6 +74,7 @@ if PLATFORM == 'gcc':
         AFLAGS += ' -gdwarf-2'
     else:
         CFLAGS += ' -Os'
+    CXXFLAGS = CFLAGS
 
     POST_ACTION = OBJCPY + ' -O ihex $TARGET ' + BUILD_OUT_DIR + 'rtthread.hex\n' + SIZE + ' $TARGET \n'
     # POST_ACTION += OBJCPY + ' -O binary $TARGET ' + BUILD_OUT_DIR + 'rtthread.bin\n' + SIZE + ' $TARGET \n'
